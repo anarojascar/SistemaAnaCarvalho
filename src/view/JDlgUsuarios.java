@@ -12,6 +12,7 @@ import tools.Util;
  */
 public class JDlgUsuarios extends javax.swing.JDialog {
 
+   
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -133,8 +134,8 @@ public class JDlgUsuarios extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTxtNome, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTxtApelido, javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,8 +170,9 @@ public class JDlgUsuarios extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jChbAtivo))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jChbAtivo)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBtnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBtnConfirmar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -181,9 +183,8 @@ public class JDlgUsuarios extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBtnExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)))
-                .addContainerGap())
+                            .addComponent(jBtnPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +234,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-       
+       Util.pergunta("Deseja excluir?");
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -253,7 +254,9 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-
+        JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
+        jDlgUsuariosPesquisar.setVisible(true);
+        
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jTxtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodigoActionPerformed
@@ -262,6 +265,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
+        jTxtCodigo.grabFocus();
         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf,jCboNivel, 
         jFmtDataNascimento,  jPwfSenha, jBtnConfirmar, jBtnCancelar, jChbAtivo);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
@@ -273,9 +277,10 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtApelidoActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-       Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf,jCboNivel, 
-        jFmtDataNascimento,  jPwfSenha, jBtnConfirmar, jBtnCancelar, jChbAtivo);
-        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        Util.mensagem("Pesquisar antes de alterar");
+//        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf,jCboNivel, 
+//        jFmtDataNascimento,  jPwfSenha, jBtnConfirmar, jBtnCancelar, jChbAtivo);
+//        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     /**

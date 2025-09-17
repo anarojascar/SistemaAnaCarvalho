@@ -219,13 +219,15 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
+        jTxtCodigo.grabFocus();
        Util.habilitar(true, jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas, jBtnConfirmar, jBtnCancelar);
        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-       
+       JDlgFuncionariosPesquisar jDlgFuncionariosPesquisar = new JDlgFuncionariosPesquisar(null, true);
+        jDlgFuncionariosPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -237,13 +239,14 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        
+        Util.pergunta("Deseja excluir?");
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-       Util.habilitar(true, jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas, jBtnConfirmar, jBtnCancelar);
-       Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        Util.mensagem("Pesquisar antes de alterar");
+//       Util.habilitar(true, jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas, jBtnConfirmar, jBtnCancelar);
+//       Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

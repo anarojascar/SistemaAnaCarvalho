@@ -273,19 +273,21 @@ public class JDlgProdutos extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
+        jTxtCodigo.grabFocus();
         Util.habilitar(true, jTxtCor, jTxtCodigo, jCboEstilo,jCboFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jCboUso , 
         jTxtMaterial,  jTxtNQuant, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.habilitar(true, jTxtCor, jTxtCodigo, jCboEstilo,jCboFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jCboUso , 
-        jTxtMaterial,  jTxtNQuant, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+            Util.mensagem("Pesquisar antes de alterar");
+//        Util.habilitar(true, jTxtCor, jTxtCodigo, jCboEstilo,jCboFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jCboUso , 
+//        jTxtMaterial,  jTxtNQuant, jBtnConfirmar, jBtnCancelar);
+//        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        
+        Util.pergunta("Deseja excluir?");
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -307,7 +309,8 @@ public class JDlgProdutos extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-       
+       JDlgProdutosPesquisar jDlgProdutosPesquisar = new JDlgProdutosPesquisar(null, true);
+        jDlgProdutosPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     /**

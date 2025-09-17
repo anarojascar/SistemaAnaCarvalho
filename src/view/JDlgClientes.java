@@ -339,6 +339,7 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
+        jTxtCodigo.grabFocus();
         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
         jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
@@ -347,13 +348,15 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
-        jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao);
-        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        Util.mensagem("Pesquisar antes de alterar");
+//        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
+//        jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao);
+//        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
+        Util.pergunta("Deseja Excluir?");
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -375,7 +378,8 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-        
+        JDlgClientesPesquisar jDlgClientesPesquisar = new JDlgClientesPesquisar(null, true);
+        jDlgClientesPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jTxtLimiteCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtLimiteCActionPerformed
