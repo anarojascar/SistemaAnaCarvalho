@@ -245,8 +245,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
         Util.mensagem("Pesquisar antes de alterar");
-//       Util.habilitar(true, jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas, jBtnConfirmar, jBtnCancelar);
-//       Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
