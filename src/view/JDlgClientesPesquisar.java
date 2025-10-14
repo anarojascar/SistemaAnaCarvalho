@@ -4,6 +4,9 @@
  */
 package view;
 
+import bean.AacClientes;
+import dao.ClientesDAO;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -15,13 +18,22 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgClientesPesquisar
      */
+     private JDlgClientes jDlgClientes;
+    ControllerClientes controllerClientes;
     public JDlgClientesPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Pesquisar Clientes");
         setLocationRelativeTo(null);
+        controllerClientes = new ControllerClientes();
+        ClientesDAO clientesDAO = new ClientesDAO();
+        List lista = (List) clientesDAO.listAll();
+        controllerClientes.setList(lista);
+        jTable.setModel(controllerClientes);
     }
-
+     public void setTelaAnterior( JDlgClientes jDlgClientes) {
+        this.jDlgClientes = jDlgClientes;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +45,7 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
 
         jBtnOK = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,7 +57,7 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,7 +68,7 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,8 +95,9 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        Util.mensagem("Erro ao pesquisar");
+        AacClientes aacClientes =  controllerClientes.getBean( jTable.getSelectedRow() );
+        jDlgClientes.beanView(aacClientes);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOKActionPerformed
 
     /**
@@ -132,6 +145,6 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnOK;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
 }

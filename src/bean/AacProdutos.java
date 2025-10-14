@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +25,7 @@ public class AacProdutos  implements java.io.Serializable {
 
      private int aacIdProdutos;
      private String aacTipoMaterial;
-     private Character aacTamanho;
+     private String aacTamanho;
      private String aacCor;
      private Integer aacPreco;
      private String aacMarca;
@@ -31,7 +33,6 @@ public class AacProdutos  implements java.io.Serializable {
      private Integer aacNumCompartilhamentos;
      private String aacEstilo;
      private String aacTipoFechamento;
-     private Set aacVendasProdutoses = new HashSet(0);
 
     public AacProdutos() {
     }
@@ -40,7 +41,7 @@ public class AacProdutos  implements java.io.Serializable {
     public AacProdutos(int aacIdProdutos) {
         this.aacIdProdutos = aacIdProdutos;
     }
-    public AacProdutos(int aacIdProdutos, String aacTipoMaterial, Character aacTamanho, String aacCor, Integer aacPreco, String aacMarca, String aacTipoUso, Integer aacNumCompartilhamentos, String aacEstilo, String aacTipoFechamento, Set aacVendasProdutoses) {
+    public AacProdutos(int aacIdProdutos, String aacTipoMaterial, String aacTamanho, String aacCor, Integer aacPreco, String aacMarca, String aacTipoUso, Integer aacNumCompartilhamentos, String aacEstilo, String aacTipoFechamento) {
        this.aacIdProdutos = aacIdProdutos;
        this.aacTipoMaterial = aacTipoMaterial;
        this.aacTamanho = aacTamanho;
@@ -51,12 +52,10 @@ public class AacProdutos  implements java.io.Serializable {
        this.aacNumCompartilhamentos = aacNumCompartilhamentos;
        this.aacEstilo = aacEstilo;
        this.aacTipoFechamento = aacTipoFechamento;
-       this.aacVendasProdutoses = aacVendasProdutoses;
     }
    
      @Id 
 
-    
     @Column(name="aac_id_produtos", unique=true, nullable=false)
     public int getAacIdProdutos() {
         return this.aacIdProdutos;
@@ -78,11 +77,11 @@ public class AacProdutos  implements java.io.Serializable {
 
     
     @Column(name="aac_tamanho", length=1)
-    public Character getAacTamanho() {
+    public String getAacTamanho() {
         return this.aacTamanho;
     }
     
-    public void setAacTamanho(Character aacTamanho) {
+    public void setAacTamanho(String aacTamanho) {
         this.aacTamanho = aacTamanho;
     }
 
@@ -156,14 +155,6 @@ public class AacProdutos  implements java.io.Serializable {
         this.aacTipoFechamento = aacTipoFechamento;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="aacProdutos")
-    public Set getAacVendasProdutoses() {
-        return this.aacVendasProdutoses;
-    }
-    
-    public void setAacVendasProdutoses(Set aacVendasProdutoses) {
-        this.aacVendasProdutoses = aacVendasProdutoses;
-    }
 
 
 

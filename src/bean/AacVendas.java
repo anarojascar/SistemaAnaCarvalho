@@ -9,6 +9,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,7 +36,7 @@ public class AacVendas  implements java.io.Serializable {
      private BigDecimal aacValorTotal;
      private Date aacDataEntrega;
      private String aacStatus;
-     private Set aacVendasProdutoses = new HashSet(0);
+ 
 
     public AacVendas() {
     }
@@ -57,11 +59,9 @@ public class AacVendas  implements java.io.Serializable {
        this.aacValorTotal = aacValorTotal;
        this.aacDataEntrega = aacDataEntrega;
        this.aacStatus = aacStatus;
-       this.aacVendasProdutoses = aacVendasProdutoses;
     }
    
      @Id 
-
     
     @Column(name="aac_id_vendas", unique=true, nullable=false)
     public int getAacIdVendas() {
@@ -130,15 +130,6 @@ public class AacVendas  implements java.io.Serializable {
     
     public void setAacStatus(String aacStatus) {
         this.aacStatus = aacStatus;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="aacVendas")
-    public Set getAacVendasProdutoses() {
-        return this.aacVendasProdutoses;
-    }
-    
-    public void setAacVendasProdutoses(Set aacVendasProdutoses) {
-        this.aacVendasProdutoses = aacVendasProdutoses;
     }
 
 

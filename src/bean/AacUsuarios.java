@@ -5,6 +5,8 @@ package bean;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,7 +21,8 @@ import javax.persistence.TemporalType;
 )
 public class AacUsuarios  implements java.io.Serializable {
 
-
+    
+    
      private int aacIdUsuarios;
      private String aacNomeCompleto;
      private String aacApelido;
@@ -27,7 +30,7 @@ public class AacUsuarios  implements java.io.Serializable {
      private Date aacDataNascimento;
      private String aacSenha;
      private Integer aacNivell;
-     private Character aacAtivo;
+     private String aacAtivo;
 
     public AacUsuarios() {
     }
@@ -36,7 +39,7 @@ public class AacUsuarios  implements java.io.Serializable {
     public AacUsuarios(int aacIdUsuarios) {
         this.aacIdUsuarios = aacIdUsuarios;
     }
-    public AacUsuarios(int aacIdUsuarios, String aacNomeCompleto, String aacApelido, String aacCpf, Date aacDataNascimento, String aacSenha, Integer aacNivell, Character aacAtivo) {
+    public AacUsuarios(int aacIdUsuarios, String aacNomeCompleto, String aacApelido, String aacCpf, Date aacDataNascimento, String aacSenha, Integer aacNivell, String aacAtivo) {
        this.aacIdUsuarios = aacIdUsuarios;
        this.aacNomeCompleto = aacNomeCompleto;
        this.aacApelido = aacApelido;
@@ -48,7 +51,7 @@ public class AacUsuarios  implements java.io.Serializable {
     }
    
      @Id 
-
+     
     
     @Column(name="aac_id_usuarios", unique=true, nullable=false)
     public int getAacIdUsuarios() {
@@ -121,11 +124,11 @@ public class AacUsuarios  implements java.io.Serializable {
 
     
     @Column(name="aac_ativo", length=1)
-    public Character getAacAtivo() {
+    public String getAacAtivo() {
         return this.aacAtivo;
     }
     
-    public void setAacAtivo(Character aacAtivo) {
+    public void setAacAtivo(String aacAtivo) {
         this.aacAtivo = aacAtivo;
     }
 

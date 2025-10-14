@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,21 +24,21 @@ public class AacClientes  implements java.io.Serializable {
 
 
      private int aacIdCliente;
-     private Integer aacLimiteCredito;
+     private Double aacLimiteCredito;
      private String aacLogradouro;
-     private Integer aacNumeroEndereco;
+     private Double aacNumeroEndereco;
      private String aacComplemento;
      private String aacBairro;
      private String aacCidade;
      private String aacEstado;
      private String aacCep;
      private String aacPreferenciaComunicacao;
-     private Integer aacTelefone;
+     private int aacTelefone;
      private String aacEmail;
      private String aacUltimoPedido;
      private String aacNome;
      private String aacCpf;
-     private Set aacVendases = new HashSet(0);
+    
 
     public AacClientes() {
     }
@@ -45,7 +47,7 @@ public class AacClientes  implements java.io.Serializable {
     public AacClientes(int aacIdCliente) {
         this.aacIdCliente = aacIdCliente;
     }
-    public AacClientes(int aacIdCliente, Integer aacLimiteCredito, String aacLogradouro, Integer aacNumeroEndereco, String aacComplemento, String aacBairro, String aacCidade, String aacEstado, String aacCep, String aacPreferenciaComunicacao, Integer aacTelefone, String aacEmail, String aacUltimoPedido, String aacNome, String aacCpf, Set aacVendases) {
+    public AacClientes(int aacIdCliente, Double aacLimiteCredito, String aacLogradouro, Double aacNumeroEndereco, String aacComplemento, String aacBairro, String aacCidade, String aacEstado, String aacCep, String aacPreferenciaComunicacao, int aacTelefone, String aacEmail, String aacUltimoPedido, String aacNome, String aacCpf) {
        this.aacIdCliente = aacIdCliente;
        this.aacLimiteCredito = aacLimiteCredito;
        this.aacLogradouro = aacLogradouro;
@@ -61,11 +63,9 @@ public class AacClientes  implements java.io.Serializable {
        this.aacUltimoPedido = aacUltimoPedido;
        this.aacNome = aacNome;
        this.aacCpf = aacCpf;
-       this.aacVendases = aacVendases;
     }
    
      @Id 
-
     
     @Column(name="aac_id_cliente", unique=true, nullable=false)
     public int getAacIdCliente() {
@@ -78,11 +78,11 @@ public class AacClientes  implements java.io.Serializable {
 
     
     @Column(name="aac_limite_credito")
-    public Integer getAacLimiteCredito() {
+    public Double getAacLimiteCredito() {
         return this.aacLimiteCredito;
     }
     
-    public void setAacLimiteCredito(Integer aacLimiteCredito) {
+    public void setAacLimiteCredito(Double aacLimiteCredito) {
         this.aacLimiteCredito = aacLimiteCredito;
     }
 
@@ -98,11 +98,11 @@ public class AacClientes  implements java.io.Serializable {
 
     
     @Column(name="aac_numero_endereco")
-    public Integer getAacNumeroEndereco() {
+    public Double getAacNumeroEndereco() {
         return this.aacNumeroEndereco;
     }
     
-    public void setAacNumeroEndereco(Integer aacNumeroEndereco) {
+    public void setAacNumeroEndereco(Double aacNumeroEndereco) {
         this.aacNumeroEndereco = aacNumeroEndereco;
     }
 
@@ -168,11 +168,11 @@ public class AacClientes  implements java.io.Serializable {
 
     
     @Column(name="aac_telefone")
-    public Integer getAacTelefone() {
+    public int getAacTelefone() {
         return this.aacTelefone;
     }
     
-    public void setAacTelefone(Integer aacTelefone) {
+    public void setAacTelefone(int aacTelefone) {
         this.aacTelefone = aacTelefone;
     }
 
@@ -214,15 +214,6 @@ public class AacClientes  implements java.io.Serializable {
     
     public void setAacCpf(String aacCpf) {
         this.aacCpf = aacCpf;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="aacClientes")
-    public Set getAacVendases() {
-        return this.aacVendases;
-    }
-    
-    public void setAacVendases(Set aacVendases) {
-        this.aacVendases = aacVendases;
     }
 
 

@@ -1,4 +1,4 @@
-
+package dao;
 import dao.AbstractDAO;
 import bean.AacUsuarios;
 import java.util.List;
@@ -35,9 +35,10 @@ public class UsuariosDAO extends AbstractDAO {
     @Override
     public void delete(Object object) {
         session.beginTransaction();
+       
+        session.delete(object);
         session.flush();
         session.clear();
-        session.delete(object);
         session.getTransaction().commit();
     }
 

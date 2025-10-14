@@ -4,6 +4,9 @@
  */
 package view;
 
+import bean.AacFuncionarios;
+import dao.FuncionariosDAO;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -15,11 +18,21 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgFuncionariosPesquisar
      */
+    private JDlgFuncionarios jDlgFuncionarios;
+    ControllerFuncionarios controllerFuncionarios;
     public JDlgFuncionariosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Pesquisar Funcionarios");
         setLocationRelativeTo(null);
+        controllerFuncionarios = new ControllerFuncionarios();
+        FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
+        List lista = (List) funcionariosDAO.listAll();
+        controllerFuncionarios.setList(lista);
+        jTable.setModel(controllerFuncionarios);
+    }
+    public void setTelaAnterior( JDlgFuncionarios jDlgFuncionarios) {
+        this.jDlgFuncionarios = jDlgFuncionarios;
     }
 
     /**
@@ -33,7 +46,7 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
 
         jBtnOK = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,7 +58,7 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,7 +69,7 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,8 +97,9 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        Util.mensagem("Erro ao pesquisar");
+        AacFuncionarios aacFuncionarios =  controllerFuncionarios.getBean( jTable.getSelectedRow() );
+        jDlgFuncionarios.beanView(aacFuncionarios);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOKActionPerformed
 
     /**
@@ -133,6 +147,6 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnOK;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
 }

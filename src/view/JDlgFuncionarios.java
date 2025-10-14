@@ -4,6 +4,13 @@
  */
 package view;
 
+import bean.AacFuncionarios;
+import dao.FuncionariosDAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 /**
@@ -11,18 +18,43 @@ import tools.Util;
  * @author anale
  */
 public class JDlgFuncionarios extends javax.swing.JDialog {
-
-    /**
-     * Creates new form JDlgFuncionarios
-     */
+    
+   private boolean incluir;
+   private boolean pesquisou;
+   private MaskFormatter mascaraDataAdm;
     public JDlgFuncionarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Cadastro de Funcionarios");
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas, jBtnConfirmar, jBtnCancelar);
+         try {
+            mascaraDataAdm = new MaskFormatter("##/##/####");
+            jFmtDataAdm.setFormatterFactory(new DefaultFormatterFactory(mascaraDataAdm));
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
+     public void beanView(AacFuncionarios aacFuncionarios){
+        jTxtCodigo.setText(Util.intoStr(aacFuncionarios.getAacIdFuncionario()));
+        jTxtNome.setText(aacFuncionarios.getAacNome());
+        jTxtContrato.setText(aacFuncionarios.getAacTipoContratacao());
+        jTxtMatricula.setText(aacFuncionarios.getAacMatricula());
+        jTxtEmail.setText(aacFuncionarios.getAacEmailProfissional());
+        jTxtTVendas.setText(Util.intoStr(aacFuncionarios.getAacTotalVendas()));
+        jFmtDataAdm.setText(Util.dateToStr(aacFuncionarios.getAacDataAdmissao()));
+    }
+      public AacFuncionarios viewBean(){
+     AacFuncionarios aacFuncionarios = new AacFuncionarios();
+     aacFuncionarios.setAacIdFuncionario(Util.strToInt(jTxtCodigo.getText()));
+     aacFuncionarios.setAacTotalVendas(Util.strToInt(jTxtTVendas.getText()));
+     aacFuncionarios.setAacDataAdmissao(Util.strToDate(jFmtDataAdm.getText()));
+     aacFuncionarios.setAacNome(jTxtNome.getText()); 
+     aacFuncionarios.setAacTipoContratacao(jTxtContrato.getText()); 
+     aacFuncionarios.setAacMatricula(jTxtMatricula.getText()); 
+     aacFuncionarios.setAacEmailProfissional(jTxtEmail.getText()); 
+     return aacFuncionarios;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,6 +251,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
+       incluir = true;
         jTxtCodigo.grabFocus();
        Util.habilitar(true, jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas, jBtnConfirmar, jBtnCancelar);
        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
@@ -226,25 +259,46 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-       JDlgFuncionariosPesquisar jDlgFuncionariosPesquisar = new JDlgFuncionariosPesquisar(null, true);
+        JDlgFuncionariosPesquisar jDlgFuncionariosPesquisar = new JDlgFuncionariosPesquisar(null, true);
+        jDlgFuncionariosPesquisar.setTelaAnterior(this);
         jDlgFuncionariosPesquisar.setVisible(true);
+        pesquisou = true;
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
+      FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
+      AacFuncionarios aacFuncionarios = viewBean();
+        
        Util.habilitar(false, jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas, jBtnConfirmar, jBtnCancelar);
        Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
        Util.limpar(jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas);
+       if (incluir){
+            funcionariosDAO.insert(aacFuncionarios);
+        }else {
+            funcionariosDAO.update(aacFuncionarios);
+        }
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        Util.pergunta("Deseja excluir?");
+        if (Util.pergunta("Deseja excluir?") == true){
+        FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
+        funcionariosDAO.delete( viewBean  ());
+        Util.limpar(jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas);
+        }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        Util.mensagem("Pesquisar antes de alterar");
+        incluir = false; 
+        if(pesquisou = false){Util.mensagem("Pesquisar antes de alterar");
+        } else{
+        Util.habilitar(true, jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        jTxtCodigo.setEnabled(false);
+        jTxtMatricula.grabFocus();
+        }
 
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 

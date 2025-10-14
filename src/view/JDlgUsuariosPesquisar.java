@@ -4,6 +4,9 @@
  */
 package view;
 
+import dao.UsuariosDAO;
+import bean.AacUsuarios;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -15,11 +18,21 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
+    private JDlgUsuarios jDlgUsuarios;
+    ControllerUsuarios controllerUsuarios;
     public JDlgUsuariosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Pesquisar Usuarios");
         setLocationRelativeTo(null);
+        controllerUsuarios = new ControllerUsuarios();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        List lista = (List) usuariosDAO.listAll();
+        controllerUsuarios.setList(lista);
+        jTable.setModel(controllerUsuarios);
+    }
+    public void setTelaAnterior( JDlgUsuarios jDlgUsuarios) {
+        this.jDlgUsuarios = jDlgUsuarios;
     }
 
     /**
@@ -33,7 +46,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
         jBtnOK = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,7 +58,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,7 +69,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,8 +96,9 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        Util.mensagem("Erro ao pesquisar");
+       AacUsuarios aacUsuarios =  controllerUsuarios.getBean( jTable.getSelectedRow() );
+        jDlgUsuarios.beanView(aacUsuarios);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOKActionPerformed
 
     /**
@@ -132,6 +146,6 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnOK;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
 }

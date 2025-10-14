@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.AacClientes;
+import dao.ClientesDAO;
 import tools.Util;
 
 /**
@@ -15,6 +17,8 @@ public class JDlgClientes extends javax.swing.JDialog {
     /**
      * Creates new form JDlgClientes
      */
+    private boolean incluir;
+    private boolean pesquisou;
     public JDlgClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -23,6 +27,43 @@ public class JDlgClientes extends javax.swing.JDialog {
         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
         jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao);
     }
+    public void beanView(AacClientes aacClientes){
+        jTxtCodigo.setText(Util.intoStr(aacClientes.getAacIdCliente()));
+        jTxtNome.setText(aacClientes.getAacNome());
+        jTxtBairro.setText(aacClientes.getAacBairro());
+        jTxtCidade.setText(aacClientes.getAacCidade());
+        jTxtComplemento.setText(aacClientes.getAacComplemento());
+        jTxtCompras.setText(aacClientes.getAacUltimoPedido());
+        jTxtEmail.setText(aacClientes.getAacEmail());
+        jTxtPrefComunicacao.setText(aacClientes.getAacPreferenciaComunicacao());
+        jTxtLogradouro.setText(aacClientes.getAacLogradouro());
+        jTxtNEndereco.setText(Util.doubleToStr(aacClientes.getAacNumeroEndereco()));
+        jTxtLimiteC.setText(Util.doubleToStr(aacClientes.getAacLimiteCredito()));
+        jFmtCpf.setText(aacClientes.getAacCpf());
+        jFmtCep.setText(aacClientes.getAacCep());
+        jFmtEstado.setText(aacClientes.getAacEstado());
+        jFmtTelefone.setText(Util.intoStr(aacClientes.getAacTelefone()));
+        
+    }
+     public AacClientes viewBean(){
+     AacClientes aacClientes = new AacClientes();
+     aacClientes.setAacIdCliente(Util.strToInt(jTxtCodigo.getText()));
+     aacClientes.setAacNome(jTxtNome.getText());   
+     aacClientes.setAacBairro(jTxtBairro.getText());   
+     aacClientes.setAacCidade(jTxtCidade.getText());   
+     aacClientes.setAacComplemento(jTxtComplemento.getText());   
+     aacClientes.setAacUltimoPedido(jTxtCompras.getText());   
+     aacClientes.setAacEmail(jTxtEmail.getText());   
+     aacClientes.setAacPreferenciaComunicacao(jTxtPrefComunicacao.getText());   
+     aacClientes.setAacLogradouro(jTxtLogradouro.getText());   
+     aacClientes.setAacNumeroEndereco(Util.strToDouble(jTxtNEndereco.getText()));   
+     aacClientes.setAacLimiteCredito(Util.strToDouble(jTxtLimiteC.getText()));   
+     aacClientes.setAacCpf(jFmtCpf.getText());   
+     aacClientes.setAacCep(jFmtCep.getText());   
+     aacClientes.setAacEstado(jFmtEstado.getText());   
+     aacClientes.setAacTelefone(Util.strToInt(jFmtTelefone.getText()));   
+        return aacClientes;
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -339,6 +380,7 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
+        incluir = true;
         jTxtCodigo.grabFocus();
         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
         jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao, jBtnConfirmar, jBtnCancelar);
@@ -347,25 +389,39 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        // TODO add your handling code here:
-        Util.mensagem("Pesquisar antes de alterar");
-//        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
-//        jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao);
-//        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        incluir = false;
+        if(pesquisou = false){Util.mensagem("Pesquisar antes de alterar");} else{
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
+        jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao);
+        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        jTxtCodigo.setEnabled(false);
+        jTxtNome.grabFocus();
+        }
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        Util.pergunta("Deseja Excluir?");
+        if (Util.pergunta("Deseja excluir?") == true){
+        ClientesDAO clientesDAO = new ClientesDAO();
+        clientesDAO.delete( viewBean  ());
+         Util.limpar(jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC, jTxtLogradouro, jTxtNEndereco, jFmtTelefone, jTxtPrefComunicacao);
+        }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
+        ClientesDAO clientesDAO = new ClientesDAO();
+        AacClientes aacClientes = viewBean();
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
         jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao);
         Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
         Util.limpar(jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
         jTxtLogradouro, jTxtNEndereco, jFmtTelefone, jTxtPrefComunicacao);
+        if (incluir){
+            clientesDAO.insert(aacClientes);
+        }else {
+            clientesDAO.update(aacClientes);
+        }
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -379,7 +435,9 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         JDlgClientesPesquisar jDlgClientesPesquisar = new JDlgClientesPesquisar(null, true);
+        jDlgClientesPesquisar.setTelaAnterior(this);
         jDlgClientesPesquisar.setVisible(true);
+        pesquisou = true;
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jTxtLimiteCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtLimiteCActionPerformed

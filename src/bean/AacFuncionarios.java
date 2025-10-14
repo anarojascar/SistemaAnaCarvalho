@@ -3,13 +3,9 @@ package bean;
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +27,6 @@ public class AacFuncionarios  implements java.io.Serializable {
      private String aacMatricula;
      private Integer aacTotalVendas;
      private Date aacDataAdmissao;
-     private Set aacVendases = new HashSet(0);
 
     public AacFuncionarios() {
     }
@@ -40,7 +35,7 @@ public class AacFuncionarios  implements java.io.Serializable {
     public AacFuncionarios(int aacIdFuncionario) {
         this.aacIdFuncionario = aacIdFuncionario;
     }
-    public AacFuncionarios(int aacIdFuncionario, String aacNome, String aacTipoContratacao, String aacEmailProfissional, String aacMatricula, Integer aacTotalVendas, Date aacDataAdmissao, Set aacVendases) {
+    public AacFuncionarios(int aacIdFuncionario, String aacNome, String aacTipoContratacao, String aacEmailProfissional, String aacMatricula, Integer aacTotalVendas, Date aacDataAdmissao) {
        this.aacIdFuncionario = aacIdFuncionario;
        this.aacNome = aacNome;
        this.aacTipoContratacao = aacTipoContratacao;
@@ -48,11 +43,9 @@ public class AacFuncionarios  implements java.io.Serializable {
        this.aacMatricula = aacMatricula;
        this.aacTotalVendas = aacTotalVendas;
        this.aacDataAdmissao = aacDataAdmissao;
-       this.aacVendases = aacVendases;
     }
    
      @Id 
-
     
     @Column(name="aac_id_funcionario", unique=true, nullable=false)
     public int getAacIdFuncionario() {
@@ -121,15 +114,6 @@ public class AacFuncionarios  implements java.io.Serializable {
     
     public void setAacDataAdmissao(Date aacDataAdmissao) {
         this.aacDataAdmissao = aacDataAdmissao;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="aacFuncionarios")
-    public Set getAacVendases() {
-        return this.aacVendases;
-    }
-    
-    public void setAacVendases(Set aacVendases) {
-        this.aacVendases = aacVendases;
     }
 
 
