@@ -4,6 +4,12 @@
  */
 package view;
 
+import java.awt.Image;
+import static java.time.LocalDate.now;
+import static javafx.scene.input.KeyCode.S;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+
 /**
  *
  * @author anale
@@ -17,6 +23,30 @@ public class JFmPrincipal extends javax.swing.JFrame {
         initComponents();
         setTitle("Tela Principal");
         setLocationRelativeTo(null);
+   
+        
+    lblHora.setFont(new java.awt.Font("Bangers", java.awt.Font.BOLD, 22));
+    lblHora.setForeground(new java.awt.Color(0, 0, 0)); // rosa escuro
+    lblHora.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+    lblHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(199, 21, 133), 2));
+
+
+    lblData.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 15));
+    lblData.setForeground(new java.awt.Color(0, 0, 0));
+    lblData.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    ImageIcon original = new ImageIcon(getClass().getResource("/img/relogio.png.png"));
+    Image scaled = original.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+    lblHora.setIcon(new ImageIcon(scaled));
+    lblHora.setHorizontalTextPosition(SwingConstants.RIGHT); 
+    lblHora.setVerticalTextPosition(SwingConstants.CENTER); 
+    javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
+    java.util.Date now = new java.util.Date();
+    java.text.SimpleDateFormat sdfHora = new java.text.SimpleDateFormat("HH:mm:ss");
+    lblHora.setText(sdfHora.format(now));
+    java.text.SimpleDateFormat sdfData = new java.text.SimpleDateFormat("EEEE, dd/MM/yyyy");
+    lblData.setText(sdfData.format(now));
+    });
+    timer.start(); 
     }
 
     /**
@@ -28,6 +58,8 @@ public class JFmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblHora = new javax.swing.JLabel();
+        lblData = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMnuUsuarios = new javax.swing.JMenuItem();
@@ -42,9 +74,11 @@ public class JFmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lblData.setText(".");
+
         jMenu1.setText("Cadastros");
 
-        jMnuUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         jMnuUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuáriooo.png"))); // NOI18N
         jMnuUsuarios.setText("Usuarios");
         jMnuUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -54,7 +88,7 @@ public class JFmPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMnuUsuarios);
 
-        jMnuClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMnuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuarios.png"))); // NOI18N
         jMnuClientes.setText("Clientes");
         jMnuClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +98,7 @@ public class JFmPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMnuClientes);
 
-        jMnuFuncionarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuFuncionarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         jMnuFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/vendedor.png"))); // NOI18N
         jMnuFuncionarios.setText("Funcionarios");
         jMnuFuncionarios.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +108,7 @@ public class JFmPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMnuFuncionarios);
 
-        jMnuProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMnuProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/produto ofc.png"))); // NOI18N
         jMnuProduto.setText("Produto");
         jMnuProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +119,7 @@ public class JFmPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMnuProduto);
         jMenu1.add(jSeparator1);
 
-        jMnuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         jMnuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
         jMnuSair.setText("Sair");
         jMnuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +133,7 @@ public class JFmPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Movimentos");
 
-        jMnuVendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuVendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMnuVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/venda.png"))); // NOI18N
         jMnuVendas.setText("Vendas");
         jMnuVendas.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +143,7 @@ public class JFmPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMnuVendas);
 
-        jMnuVendasProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuVendasProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         jMnuVendasProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/produtos.png"))); // NOI18N
         jMnuVendasProduto.setText("VendasProduto");
         jMnuVendasProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -127,11 +161,22 @@ public class JFmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(227, Short.MAX_VALUE)
+                .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(186, Short.MAX_VALUE)
+                .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -219,5 +264,7 @@ public class JFmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMnuVendas;
     private javax.swing.JMenuItem jMnuVendasProduto;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel lblData;
+    private javax.swing.JLabel lblHora;
     // End of variables declaration//GEN-END:variables
 }

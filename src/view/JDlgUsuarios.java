@@ -146,6 +146,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         jChbAtivo.setText("Ativo");
 
         jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionário", "Convidado" }));
+        jCboNivel.setSelectedIndex(-1);
 
         jLabel3.setText("Apelido");
 

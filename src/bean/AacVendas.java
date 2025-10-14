@@ -33,32 +33,24 @@ public class AacVendas  implements java.io.Serializable {
      private AacClientes aacClientes;
      private AacFuncionarios aacFuncionarios;
      private Date aacDataVenda;
-     private BigDecimal aacValorTotal;
-     private Date aacDataEntrega;
-     private String aacStatus;
  
 
     public AacVendas() {
     }
 
 	
-    public AacVendas(int aacIdVendas, AacClientes aacClientes, AacFuncionarios aacFuncionarios, Date aacDataVenda, BigDecimal aacValorTotal, Date aacDataEntrega, String aacStatus) {
+    public AacVendas(int aacIdVendas, AacClientes aacClientes, AacFuncionarios aacFuncionarios, Date aacDataVenda) {
         this.aacIdVendas = aacIdVendas;
         this.aacClientes = aacClientes;
         this.aacFuncionarios = aacFuncionarios;
         this.aacDataVenda = aacDataVenda;
-        this.aacValorTotal = aacValorTotal;
-        this.aacDataEntrega = aacDataEntrega;
-        this.aacStatus = aacStatus;
     }
-    public AacVendas(int aacIdVendas, AacClientes aacClientes, AacFuncionarios aacFuncionarios, Date aacDataVenda, BigDecimal aacValorTotal, Date aacDataEntrega, String aacStatus, Set aacVendasProdutoses) {
+    public AacVendas(int aacIdVendas, AacClientes aacClientes, AacFuncionarios aacFuncionarios, Date aacDataVenda, String aacStatus) {
        this.aacIdVendas = aacIdVendas;
        this.aacClientes = aacClientes;
        this.aacFuncionarios = aacFuncionarios;
        this.aacDataVenda = aacDataVenda;
-       this.aacValorTotal = aacValorTotal;
-       this.aacDataEntrega = aacDataEntrega;
-       this.aacStatus = aacStatus;
+
     }
    
      @Id 
@@ -101,40 +93,6 @@ public class AacVendas  implements java.io.Serializable {
     public void setAacDataVenda(Date aacDataVenda) {
         this.aacDataVenda = aacDataVenda;
     }
-
-    
-    @Column(name="aac_valor_total", nullable=false, precision=12)
-    public BigDecimal getAacValorTotal() {
-        return this.aacValorTotal;
-    }
-    
-    public void setAacValorTotal(BigDecimal aacValorTotal) {
-        this.aacValorTotal = aacValorTotal;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name="aac_data_entrega", nullable=false, length=10)
-    public Date getAacDataEntrega() {
-        return this.aacDataEntrega;
-    }
-    
-    public void setAacDataEntrega(Date aacDataEntrega) {
-        this.aacDataEntrega = aacDataEntrega;
-    }
-
-    
-    @Column(name="aac_status", nullable=false, length=20)
-    public String getAacStatus() {
-        return this.aacStatus;
-    }
-    
-    public void setAacStatus(String aacStatus) {
-        this.aacStatus = aacStatus;
-    }
-
-
-
-
 }
 
 
