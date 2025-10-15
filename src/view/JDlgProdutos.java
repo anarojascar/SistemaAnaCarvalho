@@ -26,7 +26,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }
     public void beanView(AacProdutos aacProdutos){
         jTxtCodigo.setText(Util.intoStr(aacProdutos.getAacIdProdutos()));
-        jTxtPreco.setText(Util.intoStr(aacProdutos.getAacPreco()));
+        jTxtPreco.setText(Util.bigDecimalToStr(aacProdutos.getAacPreco()));
         jTxtNQuant.setText(Util.intoStr(aacProdutos.getAacNumCompartilhamentos()));
         jTxtCor.setText(aacProdutos.getAacCor());
         jTxtMarca.setText(aacProdutos.getAacMarca());
@@ -39,7 +39,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
      public AacProdutos viewBean(){
      AacProdutos aacProdutos = new AacProdutos();
      aacProdutos.setAacIdProdutos(Util.strToInt(jTxtCodigo.getText()));
-     aacProdutos.setAacPreco(Util.strToInt(jTxtPreco.getText()));
+     aacProdutos.setAacPreco(Util.strToBigDecimal(jTxtPreco.getText()));
      aacProdutos.setAacNumCompartilhamentos(Util.strToInt(jTxtNQuant.getText()));
      aacProdutos.setAacCor(jTxtCor.getText());   
      aacProdutos.setAacTipoMaterial(jTxtMaterial.getText());   

@@ -4,6 +4,11 @@
  */
 package view;
 
+
+import bean.AacProdutos;
+import dao.ProdutosDAO;
+import java.util.List;
+
 /**
  *
  * @author anale
@@ -18,6 +23,13 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
         initComponents();
         setTitle("Vendas Produto");
         setLocationRelativeTo(null);
+        jCboProdutos.removeAllItems();
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List lista = (List) produtosDAO.listAll();
+        for (int i = 0; i < lista.size(); i++) {
+            jCboProdutos.addItem((AacProdutos)lista.get(i));
+            
+        }
     }
 
     /**
@@ -30,7 +42,7 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCboProdutos = new javax.swing.JComboBox<AacProdutos>();
         jLabel2 = new javax.swing.JLabel();
         jBtnOK = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
@@ -39,8 +51,6 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Produtos");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("Quantidade ");
 
@@ -57,7 +67,7 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCboProdutos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,7 +92,7 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCboProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -139,7 +149,7 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnOK;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<AacProdutos> jCboProdutos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;

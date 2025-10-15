@@ -25,10 +25,10 @@ public class JFmPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
    
         
-    lblHora.setFont(new java.awt.Font("Bangers", java.awt.Font.BOLD, 22));
-    lblHora.setForeground(new java.awt.Color(0, 0, 0)); // rosa escuro
+    lblHora.setFont(new java.awt.Font("Bangers", java.awt.Font.BOLD, 25));
+    lblHora.setForeground(new java.awt.Color(0, 0, 0)); 
     lblHora.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    lblHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(199, 21, 133), 2));
+    lblHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
 
     lblData.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 15));
@@ -161,13 +161,12 @@ public class JFmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(227, Short.MAX_VALUE)
-                .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(214, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

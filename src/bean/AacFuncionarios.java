@@ -116,7 +116,10 @@ public class AacFuncionarios  implements java.io.Serializable {
         this.aacDataAdmissao = aacDataAdmissao;
     }
 
-
+     @Override
+     public String toString(){
+         return this.aacNome;
+    }
 
 
 }

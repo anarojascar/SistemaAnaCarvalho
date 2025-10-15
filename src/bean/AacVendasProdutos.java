@@ -26,9 +26,6 @@ public class AacVendasProdutos  implements java.io.Serializable {
      private int aacIdVendasProdutos;
      private AacProdutos aacProdutos;
      private AacVendas aacVendas;
-     private byte aacUnidades;
-     private BigDecimal aacPrecoUnitario;
-     private BigDecimal aacDesconto;
 
     public AacVendasProdutos() {
     }
@@ -37,9 +34,6 @@ public class AacVendasProdutos  implements java.io.Serializable {
        this.aacIdVendasProdutos = aacIdVendasProdutos;
        this.aacProdutos = aacProdutos;
        this.aacVendas = aacVendas;
-       this.aacUnidades = aacUnidades;
-       this.aacPrecoUnitario = aacPrecoUnitario;
-       this.aacDesconto = aacDesconto;
     }
    
      @Id 
@@ -73,40 +67,6 @@ public class AacVendasProdutos  implements java.io.Serializable {
     public void setAacVendas(AacVendas aacVendas) {
         this.aacVendas = aacVendas;
     }
-
-    
-    @Column(name="aac_unidades", nullable=false)
-    public byte getAacUnidades() {
-        return this.aacUnidades;
-    }
-    
-    public void setAacUnidades(byte aacUnidades) {
-        this.aacUnidades = aacUnidades;
-    }
-
-    
-    @Column(name="aac_preco_unitario", nullable=false, precision=10)
-    public BigDecimal getAacPrecoUnitario() {
-        return this.aacPrecoUnitario;
-    }
-    
-    public void setAacPrecoUnitario(BigDecimal aacPrecoUnitario) {
-        this.aacPrecoUnitario = aacPrecoUnitario;
-    }
-
-    
-    @Column(name="aac_desconto", nullable=false, precision=10)
-    public BigDecimal getAacDesconto() {
-        return this.aacDesconto;
-    }
-    
-    public void setAacDesconto(BigDecimal aacDesconto) {
-        this.aacDesconto = aacDesconto;
-    }
-
-
-
-
 }
 
 

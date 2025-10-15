@@ -33,22 +33,26 @@ public class AacVendas  implements java.io.Serializable {
      private AacClientes aacClientes;
      private AacFuncionarios aacFuncionarios;
      private Date aacDataVenda;
+     private int aacValorTotal;
  
 
     public AacVendas() {
     }
 
 	
-    public AacVendas(int aacIdVendas, AacClientes aacClientes, AacFuncionarios aacFuncionarios, Date aacDataVenda) {
+    public AacVendas(int aacIdVendas, AacClientes aacClientes, AacFuncionarios aacFuncionarios, Date aacDataVenda, int aacValorTotal) {
         this.aacIdVendas = aacIdVendas;
         this.aacClientes = aacClientes;
         this.aacFuncionarios = aacFuncionarios;
         this.aacDataVenda = aacDataVenda;
+        this.aacValorTotal = aacValorTotal;
+        
     }
     public AacVendas(int aacIdVendas, AacClientes aacClientes, AacFuncionarios aacFuncionarios, Date aacDataVenda, String aacStatus) {
        this.aacIdVendas = aacIdVendas;
        this.aacClientes = aacClientes;
        this.aacFuncionarios = aacFuncionarios;
+       this.aacDataVenda = aacDataVenda;
        this.aacDataVenda = aacDataVenda;
 
     }

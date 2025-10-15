@@ -6,6 +6,11 @@ package view;
 
 import bean.AacClientes;
 import dao.ClientesDAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 /**
@@ -19,6 +24,7 @@ public class JDlgClientes extends javax.swing.JDialog {
      */
     private boolean incluir;
     private boolean pesquisou;
+    private MaskFormatter mascaracpf, mascaraCEP;
     public JDlgClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -26,6 +32,15 @@ public class JDlgClientes extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
         jBtnConfirmar, jBtnCancelar, jTxtLogradouro, jTxtNEndereco,  jFmtTelefone, jTxtPrefComunicacao);
+        
+        try {
+            mascaracpf = new MaskFormatter("###.###.###-##");
+            mascaraCEP = new MaskFormatter("#####-###");
+            jFmtCpf.setFormatterFactory(new DefaultFormatterFactory(mascaracpf));
+            jFmtCep.setFormatterFactory(new DefaultFormatterFactory(mascaraCEP));
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void beanView(AacClientes aacClientes){
         jTxtCodigo.setText(Util.intoStr(aacClientes.getAacIdCliente()));
@@ -37,12 +52,12 @@ public class JDlgClientes extends javax.swing.JDialog {
         jTxtEmail.setText(aacClientes.getAacEmail());
         jTxtPrefComunicacao.setText(aacClientes.getAacPreferenciaComunicacao());
         jTxtLogradouro.setText(aacClientes.getAacLogradouro());
-        jTxtNEndereco.setText(Util.doubleToStr(aacClientes.getAacNumeroEndereco()));
-        jTxtLimiteC.setText(Util.doubleToStr(aacClientes.getAacLimiteCredito()));
+        jTxtNEndereco.setText(Util.intoStr(aacClientes.getAacNumeroEndereco()));
+        jTxtLimiteC.setText(Util.bigDecimalToStr(aacClientes.getAacLimiteCredito()));
         jFmtCpf.setText(aacClientes.getAacCpf());
         jFmtCep.setText(aacClientes.getAacCep());
         jFmtEstado.setText(aacClientes.getAacEstado());
-        jFmtTelefone.setText(Util.intoStr(aacClientes.getAacTelefone()));
+        jFmtTelefone.setText(aacClientes.getAacTelefone());
         
     }
      public AacClientes viewBean(){
@@ -56,12 +71,12 @@ public class JDlgClientes extends javax.swing.JDialog {
      aacClientes.setAacEmail(jTxtEmail.getText());   
      aacClientes.setAacPreferenciaComunicacao(jTxtPrefComunicacao.getText());   
      aacClientes.setAacLogradouro(jTxtLogradouro.getText());   
-     aacClientes.setAacNumeroEndereco(Util.strToDouble(jTxtNEndereco.getText()));   
-     aacClientes.setAacLimiteCredito(Util.strToDouble(jTxtLimiteC.getText()));   
+     aacClientes.setAacNumeroEndereco(Util.strToInt(jTxtNEndereco.getText()));   
+     aacClientes.setAacLimiteCredito(Util.strToBigDecimal(jTxtLimiteC.getText()));   
      aacClientes.setAacCpf(jFmtCpf.getText());   
      aacClientes.setAacCep(jFmtCep.getText());   
      aacClientes.setAacEstado(jFmtEstado.getText());   
-     aacClientes.setAacTelefone(Util.strToInt(jFmtTelefone.getText()));   
+     aacClientes.setAacTelefone(jFmtTelefone.getText());   
         return aacClientes;
      }
 

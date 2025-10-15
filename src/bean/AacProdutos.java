@@ -2,6 +2,7 @@ package bean;
 // Generated 11/out/2025 18:49:24 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ public class AacProdutos  implements java.io.Serializable {
      private String aacTipoMaterial;
      private String aacTamanho;
      private String aacCor;
-     private Integer aacPreco;
+     private BigDecimal aacPreco;
      private String aacMarca;
      private String aacTipoUso;
      private Integer aacNumCompartilhamentos;
@@ -41,7 +42,7 @@ public class AacProdutos  implements java.io.Serializable {
     public AacProdutos(int aacIdProdutos) {
         this.aacIdProdutos = aacIdProdutos;
     }
-    public AacProdutos(int aacIdProdutos, String aacTipoMaterial, String aacTamanho, String aacCor, Integer aacPreco, String aacMarca, String aacTipoUso, Integer aacNumCompartilhamentos, String aacEstilo, String aacTipoFechamento) {
+    public AacProdutos(int aacIdProdutos, String aacTipoMaterial, String aacTamanho, String aacCor, BigDecimal aacPreco, String aacMarca, String aacTipoUso, Integer aacNumCompartilhamentos, String aacEstilo, String aacTipoFechamento) {
        this.aacIdProdutos = aacIdProdutos;
        this.aacTipoMaterial = aacTipoMaterial;
        this.aacTamanho = aacTamanho;
@@ -97,11 +98,11 @@ public class AacProdutos  implements java.io.Serializable {
 
     
     @Column(name="aac_preco")
-    public Integer getAacPreco() {
+    public BigDecimal getAacPreco() {
         return this.aacPreco;
     }
     
-    public void setAacPreco(Integer aacPreco) {
+    public void setAacPreco(BigDecimal aacPreco) {
         this.aacPreco = aacPreco;
     }
 
@@ -156,7 +157,10 @@ public class AacProdutos  implements java.io.Serializable {
     }
 
 
-
+     @Override
+     public String toString(){
+         return this.aacMarca;
+    }
 
 
 }

@@ -2,6 +2,7 @@ package bean;
 // Generated 11/out/2025 18:49:24 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -24,16 +25,16 @@ public class AacClientes  implements java.io.Serializable {
 
 
      private int aacIdCliente;
-     private Double aacLimiteCredito;
+     private BigDecimal aacLimiteCredito;
      private String aacLogradouro;
-     private Double aacNumeroEndereco;
+     private int aacNumeroEndereco;
      private String aacComplemento;
      private String aacBairro;
      private String aacCidade;
      private String aacEstado;
      private String aacCep;
      private String aacPreferenciaComunicacao;
-     private int aacTelefone;
+     private String aacTelefone;
      private String aacEmail;
      private String aacUltimoPedido;
      private String aacNome;
@@ -47,7 +48,7 @@ public class AacClientes  implements java.io.Serializable {
     public AacClientes(int aacIdCliente) {
         this.aacIdCliente = aacIdCliente;
     }
-    public AacClientes(int aacIdCliente, Double aacLimiteCredito, String aacLogradouro, Double aacNumeroEndereco, String aacComplemento, String aacBairro, String aacCidade, String aacEstado, String aacCep, String aacPreferenciaComunicacao, int aacTelefone, String aacEmail, String aacUltimoPedido, String aacNome, String aacCpf) {
+    public AacClientes(int aacIdCliente, BigDecimal aacLimiteCredito, String aacLogradouro, int aacNumeroEndereco, String aacComplemento, String aacBairro, String aacCidade, String aacEstado, String aacCep, String aacPreferenciaComunicacao, String aacTelefone, String aacEmail, String aacUltimoPedido, String aacNome, String aacCpf) {
        this.aacIdCliente = aacIdCliente;
        this.aacLimiteCredito = aacLimiteCredito;
        this.aacLogradouro = aacLogradouro;
@@ -78,11 +79,11 @@ public class AacClientes  implements java.io.Serializable {
 
     
     @Column(name="aac_limite_credito")
-    public Double getAacLimiteCredito() {
+    public BigDecimal getAacLimiteCredito() {
         return this.aacLimiteCredito;
     }
     
-    public void setAacLimiteCredito(Double aacLimiteCredito) {
+    public void setAacLimiteCredito(BigDecimal aacLimiteCredito) {
         this.aacLimiteCredito = aacLimiteCredito;
     }
 
@@ -98,11 +99,11 @@ public class AacClientes  implements java.io.Serializable {
 
     
     @Column(name="aac_numero_endereco")
-    public Double getAacNumeroEndereco() {
+    public int getAacNumeroEndereco() {
         return this.aacNumeroEndereco;
     }
     
-    public void setAacNumeroEndereco(Double aacNumeroEndereco) {
+    public void setAacNumeroEndereco(int aacNumeroEndereco) {
         this.aacNumeroEndereco = aacNumeroEndereco;
     }
 
@@ -168,11 +169,11 @@ public class AacClientes  implements java.io.Serializable {
 
     
     @Column(name="aac_telefone")
-    public int getAacTelefone() {
+    public String getAacTelefone() {
         return this.aacTelefone;
     }
     
-    public void setAacTelefone(int aacTelefone) {
+    public void setAacTelefone(String aacTelefone) {
         this.aacTelefone = aacTelefone;
     }
 
@@ -216,7 +217,10 @@ public class AacClientes  implements java.io.Serializable {
         this.aacCpf = aacCpf;
     }
 
-
+     @Override
+       public String toString(){
+         return this.aacNome;
+    }
 
 
 }

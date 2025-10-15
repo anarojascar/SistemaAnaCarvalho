@@ -20,7 +20,7 @@ import javax.swing.text.MaskFormatter;
 public class JDlgUsuarios extends javax.swing.JDialog {
 
    private boolean incluir;
-   private boolean pesquisou;
+   private boolean pesquisar;
    private MaskFormatter mascaracpf, mascaraDataNasc;
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -317,7 +317,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
         jDlgUsuariosPesquisar.setTelaAnterior(this);
         jDlgUsuariosPesquisar.setVisible(true);
-        pesquisou = true;
+        pesquisar = true;
         
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
@@ -342,12 +342,13 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         incluir = false; 
-        if(pesquisou = false){Util.mensagem("Pesquisar antes de alterar");} else{
-        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf,jCboNivel, 
+        if(pesquisar = true){Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf,jCboNivel, 
         jFmtDataNascimento,  jPwfSenha, jBtnConfirmar, jBtnCancelar, jChbAtivo);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
         jTxtCodigo.setEnabled(false);
         jFmtCpf.grabFocus();
+        } else {
+            Util.mensagem("Pesquisar antes de alterar");
         }
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 

@@ -4,6 +4,7 @@
  */
 package tools;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -79,5 +80,23 @@ public class Util {
     public static String dateToStr(Date data){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(data);
+    }
+     public static BigDecimal strToBigDecimal(String num) {
+        if (num == null || num.trim().isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+        try {
+            num = num.replace(",", ".");
+            return new BigDecimal(num);
+        } catch (NumberFormatException e) {
+            return BigDecimal.ZERO; 
+        }
+    }
+
+    public static String bigDecimalToStr(BigDecimal valor) {
+        if (valor == null) {
+            return "0.00";
+        }
+        return valor.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
     }
 }
