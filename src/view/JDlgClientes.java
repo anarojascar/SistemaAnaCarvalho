@@ -202,7 +202,7 @@ public class JDlgClientes extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Limite Crédito");
+        jLabel3.setText("Limite Crédito (R$)");
 
         jTxtLimiteC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

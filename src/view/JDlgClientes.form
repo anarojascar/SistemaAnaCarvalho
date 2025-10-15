@@ -348,7 +348,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Limite Cr&#xe9;dito"/>
+        <Property name="text" type="java.lang.String" value="Limite Cr&#xe9;dito (R$)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtLimiteC">
