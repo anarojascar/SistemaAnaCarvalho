@@ -48,14 +48,6 @@ public class AacVendas  implements java.io.Serializable {
         this.aacValorTotal = aacValorTotal;
         
     }
-    public AacVendas(int aacIdVendas, AacClientes aacClientes, AacFuncionarios aacFuncionarios, Date aacDataVenda, String aacStatus) {
-       this.aacIdVendas = aacIdVendas;
-       this.aacClientes = aacClientes;
-       this.aacFuncionarios = aacFuncionarios;
-       this.aacDataVenda = aacDataVenda;
-       this.aacDataVenda = aacDataVenda;
-
-    }
    
      @Id 
     
@@ -96,6 +88,14 @@ public class AacVendas  implements java.io.Serializable {
     
     public void setAacDataVenda(Date aacDataVenda) {
         this.aacDataVenda = aacDataVenda;
+    }
+      @Column(name="aac_valor_total", unique=true, nullable=false)
+    public int getAacValorTotal() {
+        return this.aacValorTotal;
+    }
+    
+    public void setAacValorTotal(int aacValorTotal) {
+        this.aacValorTotal = aacValorTotal;
     }
 }
 

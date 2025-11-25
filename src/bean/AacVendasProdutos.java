@@ -26,14 +26,20 @@ public class AacVendasProdutos  implements java.io.Serializable {
      private int aacIdVendasProdutos;
      private AacProdutos aacProdutos;
      private AacVendas aacVendas;
+     private int aacPrecoUnitario;
+     private BigDecimal aacDesconto; //era pra ser "total" mas no bd do host ta errado rsrs
+     private int aacUnidades;
 
     public AacVendasProdutos() {
     }
 
-    public AacVendasProdutos(int aacIdVendasProdutos, AacProdutos aacProdutos, AacVendas aacVendas, byte aacUnidades, BigDecimal aacPrecoUnitario, BigDecimal aacDesconto) {
+    public AacVendasProdutos(int aacIdVendasProdutos, AacProdutos aacProdutos, AacVendas aacVendas, int aacUnidades, int aacPrecoUnitario, BigDecimal aacDesconto) {
        this.aacIdVendasProdutos = aacIdVendasProdutos;
        this.aacProdutos = aacProdutos;
        this.aacVendas = aacVendas;
+       this.aacPrecoUnitario = aacPrecoUnitario;
+       this.aacDesconto = aacDesconto;
+       this.aacUnidades = aacUnidades;
     }
    
      @Id 
@@ -48,7 +54,7 @@ public class AacVendasProdutos  implements java.io.Serializable {
         this.aacIdVendasProdutos = aacIdVendasProdutos;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="aac_fk_produtos", nullable=false)
     public AacProdutos getAacProdutos() {
         return this.aacProdutos;
@@ -58,7 +64,7 @@ public class AacVendasProdutos  implements java.io.Serializable {
         this.aacProdutos = aacProdutos;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="aac_fk_vendas", nullable=false)
     public AacVendas getAacVendas() {
         return this.aacVendas;
@@ -67,6 +73,33 @@ public class AacVendasProdutos  implements java.io.Serializable {
     public void setAacVendas(AacVendas aacVendas) {
         this.aacVendas = aacVendas;
     }
+  
+       @Column(name="aac_preco_unitario", unique=true, nullable=false)
+    public int getAacPrecoUnitario() {
+        return this.aacPrecoUnitario;
+    }
+    
+    public void setAacPrecoUnitario( int aacPrecoUnitario) {
+        this.aacPrecoUnitario = aacPrecoUnitario;
+    }
+       @Column(name="aac_desconto", unique=true, nullable=false)
+    public BigDecimal getAacDesconto() {
+        return this.aacDesconto;
+    }
+    
+    public void setAacDesconto( BigDecimal aacDesconto) {
+        this.aacDesconto = aacDesconto;
+    }
+       @Column(name="aac_unidades", unique=true, nullable=false)
+    public int getAacUnidades() {
+        return this.aacUnidades;
+    }
+    
+    public void setAacUnidades( int aacUnidades) {
+        this.aacUnidades = aacUnidades;
+    }
+
+
 }
 
 

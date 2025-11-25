@@ -9,6 +9,7 @@ import dao.FuncionariosDAO;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
@@ -282,11 +283,15 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if (Util.pergunta("Deseja excluir?") == true){
         FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
         funcionariosDAO.delete( viewBean  ());
-        Util.limpar(jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas);
         }
+         Util.limpar(jTxtCodigo, jTxtContrato, jFmtDataAdm, jTxtNome, jTxtMatricula, jTxtEmail, jTxtTVendas);
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed

@@ -6,6 +6,7 @@ package view;
 
 import bean.AacProdutos;
 import dao.ProdutosDAO;
+import javax.swing.JOptionPane;
 import tools.Util;
 
 /**
@@ -15,13 +16,13 @@ import tools.Util;
 public class JDlgProdutos extends javax.swing.JDialog {
 
     private boolean incluir;
-    private boolean pesquisou;
+    boolean pesquisou;
     public JDlgProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Cadastro de Produto");
         setLocationRelativeTo(null);
-        Util.habilitar(false, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jTxtTamanho, jTxtUSo , 
+        Util.habilitar(false, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
         jTxtMaterial,  jTxtNQuant, jBtnConfirmar, jBtnCancelar);
     }
     public void beanView(AacProdutos aacProdutos){
@@ -33,7 +34,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
         jTxtMaterial.setText(aacProdutos.getAacTipoMaterial());
         jTxtEstilo.setText(aacProdutos.getAacEstilo());
         jTxtFechamento.setText(aacProdutos.getAacTipoFechamento());
-        jTxtTamanho.setText(aacProdutos.getAacTamanho());
+//        jCboTamanho.setSelectedIndex(aacProdutos.getAacTamanho());
         jTxtUSo.setText(aacProdutos.getAacTipoUso());
     }
      public AacProdutos viewBean(){
@@ -46,7 +47,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
      aacProdutos.setAacMarca(jTxtMarca.getText());   
      aacProdutos.setAacTipoFechamento(jTxtFechamento.getText());
      aacProdutos.setAacTipoUso(jTxtUSo.getText());
-     aacProdutos.setAacTamanho(jTxtTamanho.getText());
+//     aacProdutos.setAacTamanho(jCboTamanho.getSelectedIndex());
      aacProdutos.setAacEstilo(jTxtEstilo.getText());
      return aacProdutos;
     }
@@ -86,7 +87,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
         jTxtUSo = new javax.swing.JTextField();
         jTxtEstilo = new javax.swing.JTextField();
         jTxtFechamento = new javax.swing.JTextField();
-        jTxtTamanho = new javax.swing.JTextField();
+        jCboTamanho = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -166,6 +167,10 @@ public class JDlgProdutos extends javax.swing.JDialog {
 
         jLabel9.setText("N. Compartilhamentos");
 
+        jCboTamanho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P", "M", "G" }));
+        jCboTamanho.setSelectedIndex(-1);
+        jCboTamanho.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,19 +213,18 @@ public class JDlgProdutos extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27))
+                                .addGap(0, 123, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(4, 4, 4)
                                         .addComponent(jLabel3))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTxtTamanho)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(jCboTamanho, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jTxtMaterial))
@@ -252,7 +256,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCboTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -306,7 +310,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
         // TODO add your handling code here:
         incluir = true;
         jTxtCodigo.grabFocus();
-        Util.habilitar(true, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jTxtTamanho, jTxtUSo , 
+        Util.habilitar(true, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
         jTxtMaterial,  jTxtNQuant, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
@@ -314,7 +318,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         incluir = false; 
         if(pesquisou = false){Util.mensagem("Pesquisar antes de alterar");} else{
-        Util.habilitar(true, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jTxtTamanho, jTxtUSo , 
+        Util.habilitar(true, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
         jTxtMaterial,  jTxtNQuant, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
         jTxtCodigo.setEnabled(false);
@@ -323,20 +327,26 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-       if (Util.pergunta("Deseja excluir?") == true){
-        ProdutosDAO produtosDAO = new ProdutosDAO();
-        produtosDAO.delete( viewBean  ());
-        Util.limpar(jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jTxtTamanho, jTxtUSo ,jTxtMaterial,  jTxtNQuant);
+     if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+        if (Util.pergunta("Deseja excluir?") == true){
+            ProdutosDAO produtosDAO = new ProdutosDAO();
+            produtosDAO.delete( viewBean  ());
+        }
+         Util.limpar(jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
+        jTxtMaterial,  jTxtNQuant);
+         
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         ProdutosDAO produtosDAO = new ProdutosDAO();
         AacProdutos aacProdutos = viewBean();
-        Util.habilitar(false, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jTxtTamanho, jTxtUSo , 
+        Util.habilitar(false, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
         jTxtMaterial,  jTxtNQuant, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
-        Util.limpar(jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jTxtTamanho, jTxtUSo , 
+        Util.limpar(jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
         jTxtMaterial,  jTxtNQuant);
         if (incluir){
             produtosDAO.insert(aacProdutos);
@@ -347,10 +357,10 @@ public class JDlgProdutos extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-       Util.habilitar(false, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jTxtTamanho, jTxtUSo , 
+       Util.habilitar(false, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
         jTxtMaterial,  jTxtNQuant, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
-        Util.limpar(jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jTxtTamanho, jTxtUSo , 
+        Util.limpar(jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
         jTxtMaterial,  jTxtNQuant);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
@@ -411,6 +421,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnPesquisar;
+    private javax.swing.JComboBox<String> jCboTamanho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -430,7 +441,6 @@ public class JDlgProdutos extends javax.swing.JDialog {
     private javax.swing.JTextField jTxtMaterial;
     private javax.swing.JTextField jTxtNQuant;
     private javax.swing.JTextField jTxtPreco;
-    private javax.swing.JTextField jTxtTamanho;
     private javax.swing.JTextField jTxtUSo;
     // End of variables declaration//GEN-END:variables
 }

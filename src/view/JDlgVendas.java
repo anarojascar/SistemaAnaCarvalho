@@ -7,25 +7,44 @@ package view;
 import bean.AacClientes;
 import bean.AacFuncionarios;
 import bean.AacVendas;
+import bean.AacVendasProdutos;
 import dao.ClientesDAO;
 import dao.FuncionariosDAO;
+import dao.VendasDAO;
+import dao.VendasProdutosDAO;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 /**
  *
  * @author anale
  */
+
 public class JDlgVendas extends javax.swing.JDialog {
 
     /**
      * Creates new form JDlgVendas
      */
+    ControllerVendasProdutos controllerVendasProdutos;
+     boolean incluir;
+     private MaskFormatter mascaraDataNasc;
     public JDlgVendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Vendas");
         setLocationRelativeTo(null);
+         try {
+            mascaraDataNasc = new MaskFormatter("##/##/####");
+            jFmtData.setFormatterFactory(new DefaultFormatterFactory(mascaraDataNasc));
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jCboClientes.removeAllItems();
         jCboVendedor.removeAllItems();
         ClientesDAO clientesDAO = new ClientesDAO();
@@ -41,6 +60,9 @@ public class JDlgVendas extends javax.swing.JDialog {
             jCboVendedor.addItem((AacFuncionarios)listaF.get(i));
             
         }
+        controllerVendasProdutos = new ControllerVendasProdutos();
+        controllerVendasProdutos.setList(new ArrayList());
+        jTable1.setModel(controllerVendasProdutos);
          Util.habilitar(false, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
     }
@@ -49,7 +71,9 @@ public class JDlgVendas extends javax.swing.JDialog {
         jCboClientes.setSelectedItem(aacVendas.getAacClientes());
         jCboVendedor.setSelectedItem(aacVendas.getAacFuncionarios());
         jFmtData.setText(Util.dateToStr(aacVendas.getAacDataVenda()));
-       
+        VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
+        List Lista = (List) vendasProdutosDAO.listProdutos(aacVendas);
+        controllerVendasProdutos.setList(Lista);
     }
      public AacVendas viewBean(){
      AacVendas aacVendas = new AacVendas();
@@ -299,6 +323,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         // TODO add your handling code here:
         Util.habilitar(true, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterar1ActionPerformed
@@ -337,7 +362,21 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jFmtDataActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-      Util.habilitar(false, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
+      VendasDAO vendasDAO = new VendasDAO();
+        VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
+        AacVendas aacVendas = viewBean();
+        if (incluir == true) {
+            vendasDAO.insert(aacVendas);
+            for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                AacVendasProdutos aacVendasProdutos = controllerVendasProdutos.getBean(ind); 
+                aacVendasProdutos.setAacVendas(aacVendas);
+                vendasProdutosDAO.insert(aacVendasProdutos);
+            }
+        } else {
+            vendasDAO.update(aacVendas);
+        }
+        
+        Util.habilitar(false, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);          
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
@@ -347,7 +386,9 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-        Util.mensagem("Falha no sistema. Tente novamente");
+        JDlgVendasPesquisar jDlgVendasPesquisar = new JDlgVendasPesquisar(null, true);
+        jDlgVendasPesquisar.setTelaAnterior(this);
+        jDlgVendasPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     /**

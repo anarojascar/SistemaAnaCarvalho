@@ -54,8 +54,8 @@ public class Util {
         JOptionPane.showMessageDialog(null,cad);
     }
     public static boolean pergunta(String cad){
-        JOptionPane.showConfirmDialog(null, cad);
-        return true;
+        return JOptionPane.showConfirmDialog(null, cad)== JOptionPane.YES_OPTION;
+        
     }
     public static int strToInt(String num){
         return Integer.parseInt(num);
@@ -70,16 +70,17 @@ public class Util {
         return String.valueOf(num);
     }
     public static Date strToDate(String data){
+         SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            return new SimpleDateFormat("dd/MM/yyyy").parse(data);
+            return fm.parse(data);
         } catch (ParseException ex) {
             Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
     public static String dateToStr(Date data){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
+        SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
+        return fm.format(data);
     }
      public static BigDecimal strToBigDecimal(String num) {
         if (num == null || num.trim().isEmpty()) {

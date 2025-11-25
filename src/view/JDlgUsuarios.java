@@ -10,6 +10,7 @@ import dao.UsuariosDAO;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -20,7 +21,7 @@ import javax.swing.text.MaskFormatter;
 public class JDlgUsuarios extends javax.swing.JDialog {
 
    private boolean incluir;
-   private boolean pesquisar;
+   boolean pesquisar;
    private MaskFormatter mascaracpf, mascaraDataNasc;
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -280,12 +281,16 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-       if (Util.pergunta("Deseja excluir?") == true){
-        UsuariosDAO usuariosDAO = new UsuariosDAO();
-        usuariosDAO.delete( viewBean  ());
-         Util.limpar(jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf, 
-                jFmtDataNascimento,  jPwfSenha, jBtnConfirmar, jBtnCancelar, jChbAtivo);
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+        if (Util.pergunta("Deseja excluir?") == true){
+            UsuariosDAO usuariosDAO = new UsuariosDAO();
+            usuariosDAO.delete( viewBean  ());
+        }
+         Util.limpar(jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf, jFmtDataNascimento, jCboNivel, jPwfSenha, jChbAtivo);
+      
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -295,7 +300,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf,jCboNivel, 
         jFmtDataNascimento,  jPwfSenha, jBtnConfirmar, jBtnCancelar, jChbAtivo);
         Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
-        Util.limpar(jTxtCodigo, jTxtApelido, jTxtNome, jFmtCpf,
+        Util.limpar(jTxtCodigo, jTxtApelido, jTxtNome, jFmtCpf, jCboNivel,
         jFmtDataNascimento, jPwfSenha,jChbAtivo);
          if (incluir){
             usuariosDAO.insert(aacUsuarios);

@@ -9,6 +9,7 @@ import dao.ClientesDAO;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
@@ -416,11 +417,15 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if (Util.pergunta("Deseja excluir?") == true){
         ClientesDAO clientesDAO = new ClientesDAO();
         clientesDAO.delete( viewBean  ());
-         Util.limpar(jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC, jTxtLogradouro, jTxtNEndereco, jFmtTelefone, jTxtPrefComunicacao);
         }
+        Util.limpar(jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC, jTxtLogradouro, jTxtNEndereco, jFmtTelefone, jTxtPrefComunicacao);
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
