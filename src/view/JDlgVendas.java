@@ -350,11 +350,11 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtCodigoActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.mensagem("Pesquise para alterar");
+        Util.mensagem("Erro no sistema =( Tente novamente mais tarde");
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-
+        
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jFmtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDataActionPerformed

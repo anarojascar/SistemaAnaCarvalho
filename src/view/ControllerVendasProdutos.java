@@ -26,8 +26,8 @@ public class ControllerVendasProdutos extends AbstractTableModel {
         return (AacVendasProdutos) lstVendasProdutos.get(rowIndex);
     }
 
-    public void addBean(AacVendasProdutos vendasProdutos) {
-        lstVendasProdutos.add(vendasProdutos);
+    public void addBean(AacVendasProdutos aacVendasProdutos) {
+        lstVendasProdutos.add(aacVendasProdutos);
         this.fireTableDataChanged();
     }
     
@@ -54,11 +54,11 @@ public class ControllerVendasProdutos extends AbstractTableModel {
         } else if (columnIndex ==1) {
             return aacVendasProdutos.getAacProdutos().getAacMarca();
         } else if (columnIndex ==2) {
-            return aacVendasProdutos.getAacUnidades();
+            return aacVendasProdutos.getAacQuantidade();
         } else if (columnIndex ==3) {
             return aacVendasProdutos.getAacPrecoUnitario();
         }else if (columnIndex ==4) {
-            return aacVendasProdutos.getAacPrecoUnitario()*aacVendasProdutos.getAacUnidades();
+            return aacVendasProdutos.getAacPrecoUnitario()*aacVendasProdutos.getAacQuantidade();
         }
         return ""; 
     }

@@ -53,7 +53,7 @@ public class VendasProdutosDAO extends AbstractDAO{
     public Object listProdutos (AacVendas aacVendas) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacVendasProdutos.class);
-        criteria.add(Restrictions.eq("vendas", aacVendas));
+        criteria.add(Restrictions.eq("aacVendas", aacVendas));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;

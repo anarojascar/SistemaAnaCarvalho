@@ -28,7 +28,7 @@ public class AacProdutos  implements java.io.Serializable {
      private String aacTipoMaterial;
 //     private Integer aacTamanho;
      private String aacCor;
-     private BigDecimal aacPreco;
+     private Double aacPreco;
      private String aacMarca;
      private String aacTipoUso;
      private Integer aacNumCompartilhamentos;
@@ -42,7 +42,7 @@ public class AacProdutos  implements java.io.Serializable {
     public AacProdutos(int aacIdProdutos) {
         this.aacIdProdutos = aacIdProdutos;
     }
-    public AacProdutos(int aacIdProdutos, String aacTipoMaterial, Integer aacTamanho, String aacCor, BigDecimal aacPreco, String aacMarca, String aacTipoUso, Integer aacNumCompartilhamentos, String aacEstilo, String aacTipoFechamento) {
+    public AacProdutos(int aacIdProdutos, String aacTipoMaterial, Integer aacTamanho, String aacCor, Double aacPreco, String aacMarca, String aacTipoUso, Integer aacNumCompartilhamentos, String aacEstilo, String aacTipoFechamento) {
        this.aacIdProdutos = aacIdProdutos;
        this.aacTipoMaterial = aacTipoMaterial;
 //       this.aacTamanho = aacTamanho;
@@ -98,11 +98,11 @@ public class AacProdutos  implements java.io.Serializable {
 
     
     @Column(name="aac_preco")
-    public BigDecimal getAacPreco() {
+    public Double getAacPreco() {
         return this.aacPreco;
     }
     
-    public void setAacPreco(BigDecimal aacPreco) {
+    public void setAacPreco(Double aacPreco) {
         this.aacPreco = aacPreco;
     }
 
