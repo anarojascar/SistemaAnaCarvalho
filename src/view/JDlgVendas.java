@@ -327,8 +327,7 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterar1ActionPerformed
-        JDlgVendasProduto jDlgVendasProduto = new JDlgVendasProduto(null, true);
-        jDlgVendasProduto.setVisible(true);
+        Util.mensagem("Erro no sistema =( Tente novamente mais tarde");
     }//GEN-LAST:event_jBtnAlterar1ActionPerformed
 
     private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
@@ -342,6 +341,7 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluir1ActionPerformed
         JDlgVendasProduto jDlgVendasProduto = new JDlgVendasProduto(null, true);
+         jDlgVendasProduto.setTelaAnterior(this);
         jDlgVendasProduto.setVisible(true);
     }//GEN-LAST:event_jBtnIncluir1ActionPerformed
 
@@ -350,7 +350,10 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtCodigoActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.mensagem("Erro no sistema =( Tente novamente mais tarde");
+        
+        Util.habilitar(true, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed

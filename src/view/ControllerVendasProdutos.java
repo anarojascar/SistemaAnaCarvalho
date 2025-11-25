@@ -56,9 +56,9 @@ public class ControllerVendasProdutos extends AbstractTableModel {
         } else if (columnIndex ==2) {
             return aacVendasProdutos.getAacQuantidade();
         } else if (columnIndex ==3) {
-            return aacVendasProdutos.getAacPrecoUnitario();
+            return aacVendasProdutos.getAacProdutos().getAacPreco();
         }else if (columnIndex ==4) {
-            return aacVendasProdutos.getAacPrecoUnitario()*aacVendasProdutos.getAacQuantidade();
+            return aacVendasProdutos.getAacProdutos().getAacPreco()*aacVendasProdutos.getAacQuantidade();
         }
         return ""; 
     }

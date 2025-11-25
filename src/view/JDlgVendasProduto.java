@@ -6,6 +6,7 @@ package view;
 
 
 import bean.AacProdutos;
+import bean.AacVendas;
 import bean.AacVendasProdutos;
 import dao.ProdutosDAO;
 import java.util.List;
@@ -35,7 +36,9 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
         }
          Util.habilitar(false, jTxtValorUni, jTxtTotal);
     }
-
+    public void setTelaAnterior(JDlgVendas jDlgVendas) {
+        this.jDlgVendas = jDlgVendas;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,12 +78,23 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
                 jBtnOKActionPerformed(evt);
             }
         });
+        jBtnOK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBtnOKKeyReleased(evt);
+            }
+        });
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnCancelarActionPerformed(evt);
+            }
+        });
+
+        jTxtAacQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtAacQuantidadeKeyReleased(evt);
             }
         });
 
@@ -168,6 +182,20 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
         int quant = Util.strToInt(jTxtAacQuantidade.getText());
         jTxtTotal.setText(Util.doubleToStr( quant * aacProdutos.getAacPreco()));
     }//GEN-LAST:event_jCboProdutosActionPerformed
+
+    private void jBtnOKKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBtnOKKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnOKKeyReleased
+
+    private void jTxtAacQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtAacQuantidadeKeyReleased
+        if(jTxtAacQuantidade.getText().isEmpty() == false){
+        AacProdutos aacProdutos = (AacProdutos) jCboProdutos.getSelectedItem();
+        int quant = Util.strToInt(jTxtAacQuantidade.getText());
+        jTxtTotal.setText(Util.doubleToStr( quant * aacProdutos.getAacPreco()));
+       } else {
+           Util.limpar(jTxtTotal);
+       }
+    }//GEN-LAST:event_jTxtAacQuantidadeKeyReleased
 
     /**
      * @param args the command line arguments

@@ -126,6 +126,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnOKActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jBtnOKKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnCancelar">
@@ -140,6 +141,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtAacQuantidade">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtAacQuantidadeKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtValorUni">
     </Component>

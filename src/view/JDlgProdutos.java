@@ -34,7 +34,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
         jTxtMaterial.setText(aacProdutos.getAacTipoMaterial());
         jTxtEstilo.setText(aacProdutos.getAacEstilo());
         jTxtFechamento.setText(aacProdutos.getAacTipoFechamento());
-//        jCboTamanho.setSelectedIndex(aacProdutos.getAacTamanho());
+        jCboTamanho.setSelectedIndex(aacProdutos.getAacTamanho());
         jTxtUSo.setText(aacProdutos.getAacTipoUso());
     }
      public AacProdutos viewBean(){
@@ -47,7 +47,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
      aacProdutos.setAacMarca(jTxtMarca.getText());   
      aacProdutos.setAacTipoFechamento(jTxtFechamento.getText());
      aacProdutos.setAacTipoUso(jTxtUSo.getText());
-//     aacProdutos.setAacTamanho(jCboTamanho.getSelectedIndex());
+     aacProdutos.setAacTamanho(jCboTamanho.getSelectedIndex());
      aacProdutos.setAacEstilo(jTxtEstilo.getText());
      return aacProdutos;
     }
