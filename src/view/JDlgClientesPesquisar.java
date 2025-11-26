@@ -7,6 +7,7 @@ package view;
 import bean.AacClientes;
 import dao.ClientesDAO;
 import java.util.List;
+import javax.swing.JOptionPane;
 import tools.Util;
 
 /**
@@ -68,6 +69,11 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,11 +100,21 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
-        // TODO add your handling code here:
+        if ( jTable.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Para pesquisar um cliente: SELECIONE UMA LINHA!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else {
         AacClientes aacClientes =  controllerClientes.getBean( jTable.getSelectedRow() );
         jDlgClientes.beanView(aacClientes);
         this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtnOKActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        if (evt.getClickCount() == 2) {
+            jBtnOKActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTableMouseClicked
 
     /**
      * @param args the command line arguments

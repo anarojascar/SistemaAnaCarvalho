@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
@@ -45,13 +46,11 @@ public class JDlgVendas extends javax.swing.JDialog {
         } catch (ParseException ex) {
             Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-        jCboClientes.removeAllItems();
-        jCboVendedor.removeAllItems();
+       
         ClientesDAO clientesDAO = new ClientesDAO();
         List lista = (List) clientesDAO.listAll();
         for (int i = 0; i < lista.size(); i++) {
             jCboClientes.addItem((AacClientes)lista.get(i));
-            
         }
         
         FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
@@ -335,8 +334,14 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtTotalActionPerformed
 
     private void jBtnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluir1ActionPerformed
-        JDlgVendasProduto jDlgVendasProduto = new JDlgVendasProduto(null, true);
-        jDlgVendasProduto.setVisible(true);
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (Util.pergunta("ATENÇÃO: Deseja excluir este produto?") == true){
+            VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
+            vendasProdutosDAO.delete( viewBean  ());
+        };
     }//GEN-LAST:event_jBtnExcluir1ActionPerformed
 
     private void jBtnIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluir1ActionPerformed
@@ -350,14 +355,26 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtCodigoActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para alterar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        incluir = false;
         Util.habilitar(true, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
-        incluir = false;
+        
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (Util.pergunta("ATENÇÃO: Deseja excluir?") == true){
+            VendasDAO vendasDAO = new VendasDAO();
+            vendasDAO.delete( viewBean  ());
+        }
+        Util.limpar(jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor);
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jFmtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDataActionPerformed
@@ -380,12 +397,14 @@ public class JDlgVendas extends javax.swing.JDialog {
         }
         
         Util.habilitar(false, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);          
+        Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);  
+        Util.limpar(jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor);        
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
       Util.habilitar(false, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
       Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+      Util.limpar(jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed

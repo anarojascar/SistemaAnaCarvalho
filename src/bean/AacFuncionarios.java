@@ -120,7 +120,17 @@ public class AacFuncionarios  implements java.io.Serializable {
      public String toString(){
          return this.aacNome;
     }
-
+     
+     @Override
+    public boolean equals(Object object) {
+        if (object instanceof AacFuncionarios) {
+            AacFuncionarios aacFuncionarios = (AacFuncionarios) object;
+            if (aacFuncionarios.getAacIdFuncionario()== this.getAacIdFuncionario()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
 

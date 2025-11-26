@@ -284,7 +284,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
         if (jTxtCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
         if (Util.pergunta("Deseja excluir?") == true){
@@ -296,6 +296,10 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para alterar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         incluir = false; 
         if(pesquisou = false){Util.mensagem("Pesquisar antes de alterar");
         } else{

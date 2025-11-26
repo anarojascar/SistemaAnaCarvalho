@@ -161,6 +161,17 @@ public class AacProdutos  implements java.io.Serializable {
      public String toString(){
          return this.aacMarca;
     }
+     
+     @Override
+    public boolean equals(Object object) {
+        if (object instanceof AacProdutos) {
+            AacProdutos aacProdutos = (AacProdutos) object;
+            if (aacProdutos.getAacIdProdutos()== this.getAacIdProdutos()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }

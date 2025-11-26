@@ -51,7 +51,8 @@ public class UsuariosDAO extends AbstractDAO {
        session.getTransaction().commit();
        return lista;
     }
-
+   
+    
     @Override
     public Object listAll() {
        session.beginTransaction();

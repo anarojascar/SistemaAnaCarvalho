@@ -405,6 +405,10 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para alterar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         incluir = false;
         if(pesquisou = false){Util.mensagem("Pesquisar antes de alterar");} else{
         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtBairro,jFmtCpf,jFmtCep, jTxtCidade, jTxtComplemento, jTxtCompras, jTxtEmail, jFmtEstado, jTxtLimiteC,
@@ -418,7 +422,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
         if (jTxtCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
         if (Util.pergunta("Deseja excluir?") == true){

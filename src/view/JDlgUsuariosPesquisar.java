@@ -7,6 +7,7 @@ package view;
 import dao.UsuariosDAO;
 import bean.AacUsuarios;
 import java.util.List;
+import javax.swing.JOptionPane;
 import tools.Util;
 
 /**
@@ -69,6 +70,11 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,10 +102,22 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-       AacUsuarios aacUsuarios =  controllerUsuarios.getBean( jTable.getSelectedRow() );
-        jDlgUsuarios.beanView(aacUsuarios);
-        this.setVisible(false);
+        if ( jTable.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Para pesquisar um usuário: SELECIONE UMA LINHA!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else {
+           AacUsuarios aacUsuarios =  controllerUsuarios.getBean( jTable.getSelectedRow() );
+            jDlgUsuarios.beanView(aacUsuarios);
+            this.setVisible(false); 
+        }
     }//GEN-LAST:event_jBtnOKActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            jBtnOKActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTableMouseClicked
 
     /**
      * @param args the command line arguments

@@ -221,6 +221,16 @@ public class AacClientes  implements java.io.Serializable {
        public String toString(){
          return this.aacNome;
     }
+      @Override
+    public boolean equals(Object object) {
+        if (object instanceof AacClientes) {
+            AacClientes aacClientes = (AacClientes) object;
+            if (aacClientes.getAacIdCliente()== this.getAacIdCliente()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }

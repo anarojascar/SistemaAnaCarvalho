@@ -105,7 +105,7 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         if (jTable1.getSelectedRow() == -1) {
-            Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+            Util.mensagem("Nenhum registro foi selecionado. Favor selecionar uma linha.");
         } else {
             AacVendas aacVendas = controllerVendas.getBean(jTable1.getSelectedRow());
             jDlgVendas.beanView(aacVendas);

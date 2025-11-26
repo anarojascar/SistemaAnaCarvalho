@@ -316,6 +316,10 @@ public class JDlgProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para alterar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         incluir = false; 
         if(pesquisou = false){Util.mensagem("Pesquisar antes de alterar");} else{
         Util.habilitar(true, jTxtCor, jTxtCodigo, jTxtEstilo,jTxtFechamento,jTxtMarca, jTxtPreco, jCboTamanho, jTxtUSo , 
@@ -328,7 +332,7 @@ public class JDlgProdutos extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
      if (jTxtCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ação nescessária: Pesquise para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
         if (Util.pergunta("Deseja excluir?") == true){

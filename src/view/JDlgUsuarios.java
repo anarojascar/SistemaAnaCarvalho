@@ -346,6 +346,10 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtApelidoActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+        if (jTxtCodigo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Pesquise para alterar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         incluir = false; 
         if(pesquisar = true){Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtApelido,jFmtCpf,jCboNivel, 
         jFmtDataNascimento,  jPwfSenha, jBtnConfirmar, jBtnCancelar, jChbAtivo);

@@ -22,33 +22,30 @@ public class JFmPrincipal extends javax.swing.JFrame {
     public JFmPrincipal() {
         initComponents();
         setTitle("Tela Principal");
-        setLocationRelativeTo(null);
-   
-        
-    lblHora.setFont(new java.awt.Font("Bangers", java.awt.Font.BOLD, 25));
-    lblHora.setForeground(new java.awt.Color(0, 0, 0)); 
-    lblHora.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    lblHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-
-    lblData.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 15));
-    lblData.setForeground(new java.awt.Color(0, 0, 0));
-    lblData.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    ImageIcon original = new ImageIcon(getClass().getResource("/img/relogio.png.png"));
-    Image scaled = original.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-    lblHora.setIcon(new ImageIcon(scaled));
-    lblHora.setHorizontalTextPosition(SwingConstants.RIGHT); 
-    lblHora.setVerticalTextPosition(SwingConstants.CENTER); 
-    javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
-    java.util.Date now = new java.util.Date();
-    java.text.SimpleDateFormat sdfHora = new java.text.SimpleDateFormat("HH:mm:ss");
-    lblHora.setText(sdfHora.format(now));
-    java.text.SimpleDateFormat sdfData = new java.text.SimpleDateFormat("EEEE, dd/MM/yyyy");
-    lblData.setText(sdfData.format(now));
-    });
-    timer.start(); 
+        setLocationRelativeTo(null); 
+        Relogio();
     }
+    
+    public void Relogio() {
+         ImageIcon original = new ImageIcon(getClass().getResource("/img/relogio.png.png"));
+        Image scaled = original.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 
+        javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
+        java.util.Date now = new java.util.Date();
+
+        java.text.SimpleDateFormat sdfHora = new java.text.SimpleDateFormat("HH:mm:ss");
+        lblHora.setText(sdfHora.format(now));
+
+        java.text.SimpleDateFormat sdfData = new java.text.SimpleDateFormat("EEEE, dd/MM/yyyy");
+        lblData.setText(sdfData.format(now));
+    });
+    timer.start();
+    
+        lblHora.setFont(new java.awt.Font("Bangers", java.awt.Font.BOLD, 25));
+        lblHora.setIcon(new ImageIcon(scaled)); 
+
+        lblData.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 14));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,21 +162,22 @@ public class JFmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(129, 129, 129))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 260, Short.MAX_VALUE)
+                .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(235, Short.MAX_VALUE)
-                .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(269, Short.MAX_VALUE)
+                .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
 
         pack();
