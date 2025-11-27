@@ -64,6 +64,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         jTable1.setModel(controllerVendasProdutos);
          Util.habilitar(false, jTxtCodigo, jFmtData, jTxtTotal, jCboClientes, jCboVendedor, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnExcluir, jBtnPesquisar, jBtnAlterar);
+        Util.limpar(jCboClientes, jCboVendedor);
     }
      public void beanView(AacVendas aacVendas){
         jTxtCodigo.setText(Util.intoStr(aacVendas.getAacIdVendas()));
