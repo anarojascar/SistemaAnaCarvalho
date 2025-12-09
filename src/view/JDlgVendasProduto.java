@@ -10,17 +10,20 @@ import bean.AacVendas;
 import bean.AacVendasProdutos;
 import dao.ProdutosDAO;
 import java.util.List;
+import javax.swing.JTable;
 import tools.Util;
 
 /**
  *
  * @author anale
  */
+
 public class JDlgVendasProduto extends javax.swing.JDialog {
     JDlgVendas jDlgVendas;
     /**
      * Creates new form JDlgVendasProduto
      */
+    boolean incluir;
     public JDlgVendasProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -29,15 +32,22 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
         jCboProdutos.removeAllItems();
         jTxtAacQuantidade.setText("1");
         ProdutosDAO produtosDAO = new ProdutosDAO();
+        //jTable1.setModel(jDlgVendas);
         List lista = (List) produtosDAO.listAll();
-        for (int i = 0; i < lista.size(); i++) {
-            jCboProdutos.addItem((AacProdutos)lista.get(i));
-            
+        for (Object object : lista) {
+            jCboProdutos.addItem((AacProdutos) object);
         }
          Util.habilitar(false, jTxtValorUni, jTxtTotal);
     }
-    public void setTelaAnterior(JDlgVendas jDlgVendas) {
+    public void setTelaAnterior(JDlgVendas jDlgVendas, AacVendasProdutos aacVendasProdutos) {
         this.jDlgVendas = jDlgVendas;
+         if (aacVendasProdutos != null) {
+            incluir = false;
+            jCboProdutos.setSelectedItem(aacVendasProdutos.getAacProdutos());
+            jTxtAacQuantidade.setText(Util.intoStr(aacVendasProdutos.getAacQuantidade()));        
+        } else {
+            incluir = true;
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,7 +178,13 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
         aacVendasProdutos.setAacProdutos((AacProdutos) jCboProdutos.getSelectedItem());
         aacVendasProdutos.setAacQuantidade(Util.strToInt(jTxtAacQuantidade.getText()) );
         aacVendasProdutos.setAacPrecoUnitario(Util.strToDouble(jTxtValorUni.getText()) );                
-        jDlgVendas.controllerVendasProdutos.addBean(aacVendasProdutos);
+        
+         if (incluir == true) {
+           jDlgVendas.controllerVendasProdutos.addBean(aacVendasProdutos);
+        } else {
+           jDlgVendas.controllerVendasProdutos.removeBean(jDlgVendas.getjTable1().getSelectedRow());
+            jDlgVendas.controllerVendasProdutos.addBean(aacVendasProdutos);
+        }
         setVisible(false);
     }//GEN-LAST:event_jBtnOKActionPerformed
 

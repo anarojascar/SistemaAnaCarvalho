@@ -58,6 +58,11 @@ public class JFmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblHora = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
+        jBtnCliente = new javax.swing.JButton();
+        jBtnConsultarProdutos = new javax.swing.JButton();
+        jBtnUsuario = new javax.swing.JButton();
+        jBtnConsultaFornecedor = new javax.swing.JButton();
+        jBtnVendas = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMnuUsuarios = new javax.swing.JMenuItem();
@@ -69,6 +74,11 @@ public class JFmPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMnuVendas = new javax.swing.JMenuItem();
         jMnuVendasProduto = new javax.swing.JMenuItem();
+        jMnuConsultas = new javax.swing.JMenu();
+        jMnuConsultarProdutos = new javax.swing.JMenuItem();
+        jMnuConsultarClientes = new javax.swing.JMenuItem();
+        jMnuConsultarVendas = new javax.swing.JMenuItem();
+        jMnuConsultarFuncionarios = new javax.swing.JMenuItem();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pngtree-e-commerce-luxury-handbags-promotion-yellow-banner-image_172259.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -76,6 +86,41 @@ public class JFmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblData.setText(".");
+
+        jBtnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/client32.png"))); // NOI18N
+        jBtnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnClienteActionPerformed(evt);
+            }
+        });
+
+        jBtnConsultarProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/carrinho-de-compras1.png"))); // NOI18N
+        jBtnConsultarProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnConsultarProdutosActionPerformed(evt);
+            }
+        });
+
+        jBtnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/icons8-fornecedor-24.png"))); // NOI18N
+        jBtnUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnUsuarioActionPerformed(evt);
+            }
+        });
+
+        jBtnConsultaFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/customers32.png"))); // NOI18N
+        jBtnConsultaFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnConsultaFornecedorActionPerformed(evt);
+            }
+        });
+
+        jBtnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/aperto-de-mao.png"))); // NOI18N
+        jBtnVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnVendasActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Cadastros");
 
@@ -156,6 +201,50 @@ public class JFmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMnuConsultas.setText("Consultas");
+
+        jMnuConsultarProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        jMnuConsultarProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/carrinho-de-compras1.png"))); // NOI18N
+        jMnuConsultarProdutos.setText("Produtos");
+        jMnuConsultarProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuConsultarProdutosActionPerformed(evt);
+            }
+        });
+        jMnuConsultas.add(jMnuConsultarProdutos);
+
+        jMnuConsultarClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        jMnuConsultarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/clients32_1.png"))); // NOI18N
+        jMnuConsultarClientes.setText("Clientes");
+        jMnuConsultarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuConsultarClientesActionPerformed(evt);
+            }
+        });
+        jMnuConsultas.add(jMnuConsultarClientes);
+
+        jMnuConsultarVendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
+        jMnuConsultarVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/aperto-de-mao.png"))); // NOI18N
+        jMnuConsultarVendas.setText("Vendas");
+        jMnuConsultarVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuConsultarVendasActionPerformed(evt);
+            }
+        });
+        jMnuConsultas.add(jMnuConsultarVendas);
+
+        jMnuConsultarFuncionarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
+        jMnuConsultarFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/customers32.png"))); // NOI18N
+        jMnuConsultarFuncionarios.setText("Fornecedor");
+        jMnuConsultarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuConsultarFuncionariosActionPerformed(evt);
+            }
+        });
+        jMnuConsultas.add(jMnuConsultarFuncionarios);
+
+        jMenuBar1.add(jMnuConsultas);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,17 +252,34 @@ public class JFmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 260, Short.MAX_VALUE)
-                .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBtnUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnVendas)
+                .addGap(15, 15, 15)
+                .addComponent(jBtnConsultarProdutos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnConsultaFornecedor)
+                .addGap(0, 130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jBtnConsultarProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBtnConsultaFornecedor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,6 +324,60 @@ public class JFmPrincipal extends javax.swing.JFrame {
         JDlgClientes jDlgClientes = new JDlgClientes(this, true);        jDlgClientes.setVisible(true);
     }//GEN-LAST:event_jMnuClientesActionPerformed
 
+    private void jMnuConsultarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuConsultarProdutosActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultarProdutos jDlgConsultarProdutos = new JDlgConsultarProdutos(null, true);
+         jDlgConsultarProdutos.setVisible(true);
+    }//GEN-LAST:event_jMnuConsultarProdutosActionPerformed
+
+    private void jBtnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClienteActionPerformed
+        // TODO add your handling code here:
+         JDlgClientes jDlgClientes = new JDlgClientes(null, true);
+         jDlgClientes.setVisible(true);
+    }//GEN-LAST:event_jBtnClienteActionPerformed
+
+    private void jBtnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVendasActionPerformed
+        // TODO add your handling code here:
+        JDlgVendas jDlgVendas = new JDlgVendas(null, true);
+         jDlgVendas.setVisible(true);
+    }//GEN-LAST:event_jBtnVendasActionPerformed
+
+    private void jBtnConsultarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarProdutosActionPerformed
+        // TODO add your handling code here:
+         JDlgConsultarProdutos jDlgConsultarProdutos = new JDlgConsultarProdutos(null, true);
+         jDlgConsultarProdutos.setVisible(true);
+    }//GEN-LAST:event_jBtnConsultarProdutosActionPerformed
+
+    private void jBtnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUsuarioActionPerformed
+        // TODO add your handling code here:
+        JDlgUsuarios jDlgUsuarios = new JDlgUsuarios(null, true);
+        jDlgUsuarios.setVisible(true);
+    }//GEN-LAST:event_jBtnUsuarioActionPerformed
+
+    private void jBtnConsultaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultaFornecedorActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultarFuncionarios jDlgConsultarFuncionarios = new JDlgConsultarFuncionarios(null, true);
+         jDlgConsultarFuncionarios.setVisible(true);
+    }//GEN-LAST:event_jBtnConsultaFornecedorActionPerformed
+
+    private void jMnuConsultarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuConsultarVendasActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultarVendas jDlgConsultarVendas = new JDlgConsultarVendas(null, true);
+         jDlgConsultarVendas.setVisible(true);
+    }//GEN-LAST:event_jMnuConsultarVendasActionPerformed
+
+    private void jMnuConsultarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuConsultarClientesActionPerformed
+        // TODO add your handling code here:
+        JDLgConsultarClientes jDlgConsultarClientes = new JDLgConsultarClientes(null, true);
+         jDlgConsultarClientes.setVisible(true);
+    }//GEN-LAST:event_jMnuConsultarClientesActionPerformed
+
+    private void jMnuConsultarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuConsultarFuncionariosActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultarFuncionarios jDlgConsultarFuncionarios = new JDlgConsultarFuncionarios(null, true);
+         jDlgConsultarFuncionarios.setVisible(true);
+    }//GEN-LAST:event_jMnuConsultarFuncionariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,11 +414,21 @@ public class JFmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnCliente;
+    private javax.swing.JButton jBtnConsultaFornecedor;
+    private javax.swing.JButton jBtnConsultarProdutos;
+    private javax.swing.JButton jBtnUsuario;
+    private javax.swing.JButton jBtnVendas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMnuClientes;
+    private javax.swing.JMenuItem jMnuConsultarClientes;
+    private javax.swing.JMenuItem jMnuConsultarFuncionarios;
+    private javax.swing.JMenuItem jMnuConsultarProdutos;
+    private javax.swing.JMenuItem jMnuConsultarVendas;
+    private javax.swing.JMenu jMnuConsultas;
     private javax.swing.JMenuItem jMnuFuncionarios;
     private javax.swing.JMenuItem jMnuProduto;
     private javax.swing.JMenuItem jMnuSair;

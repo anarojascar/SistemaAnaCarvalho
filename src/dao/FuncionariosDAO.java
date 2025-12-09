@@ -50,7 +50,32 @@ public class FuncionariosDAO extends AbstractDAO{
        session.getTransaction().commit();
        return lista;
     }
-
+    public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(AacFuncionarios.class);
+        criteria.add(Restrictions.like("nome", "%"+nome+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    } 
+     public Object listContrato(String contrato) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(AacFuncionarios.class);
+        criteria.add(Restrictions.like("contrato", contrato+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    } 
+      public Object listNomeContrato(String nome, String contrato) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(AacFuncionarios.class);
+        criteria.add(Restrictions.like("nome", "%"+nome+"%"));
+        criteria.add(Restrictions.like("contrato", contrato+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+      }
+        
     @Override
     public Object listAll() {
        session.beginTransaction();

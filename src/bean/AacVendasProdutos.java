@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,14 +26,14 @@ public class AacVendasProdutos  implements java.io.Serializable {
 
      private int aacIdVendasProdutos;
      private AacVendas aacVendas;
-     private Double aacPrecoUnitario; //double era p ser
+     private Double aacPrecoUnitario; 
      private AacProdutos aacProdutos;
      private int aacQuantidade;
 
     public AacVendasProdutos() {
     }
 
-    public AacVendasProdutos(int aacIdVendasProdutos, AacProdutos aacProdutos, AacVendas aacVendas, int aacQuantidade, Double aacPrecoUnitario, BigDecimal aacDesconto) {
+    public AacVendasProdutos(int aacIdVendasProdutos, AacProdutos aacProdutos, AacVendas aacVendas, int aacQuantidade, Double aacPrecoUnitario) {
        this.aacIdVendasProdutos = aacIdVendasProdutos;
        this.aacProdutos = aacProdutos;
        this.aacVendas = aacVendas;
@@ -40,7 +41,7 @@ public class AacVendasProdutos  implements java.io.Serializable {
        this.aacQuantidade = aacQuantidade;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
 
     @Column(name="aac_id_vendas_produtos", unique=true, nullable=false)
