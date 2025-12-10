@@ -31,7 +31,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTxtCidade" alignment="0" min="-2" pref="203" max="-2" attributes="0"/>
+                  <Component id="jTxtLimiteCredito" alignment="0" min="-2" pref="203" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -75,7 +75,7 @@
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTxtNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtLimiteCredito" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTxtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBtnConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -89,11 +89,11 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTxtCidade">
+    <Component class="javax.swing.JTextField" name="jTxtLimiteCredito">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cidade "/>
+        <Property name="text" type="java.lang.String" value="Limite Credito (R$)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnConsulta">

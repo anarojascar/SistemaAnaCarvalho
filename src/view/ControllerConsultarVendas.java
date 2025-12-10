@@ -30,7 +30,7 @@ public class ControllerConsultarVendas extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class ControllerConsultarVendas extends AbstractTableModel{
         } else if (columnIndex ==1) {
             return aacVendas.getAacClientes();        
         } else if (columnIndex ==2) {
-            return aacVendas.getAacFuncionarios();
+            return aacVendas.getAacValorTotal();
         }else if (columnIndex ==3) {
             return aacVendas.getAacDataVenda();
         }
@@ -55,7 +55,7 @@ public class ControllerConsultarVendas extends AbstractTableModel{
         } else if ( columnIndex == 1) {
             return "Clientes";         
         } else if ( columnIndex == 2) {
-            return "Funcionarios";
+            return "Valor Total";
         } else if ( columnIndex == 3) {
             return "Data Venda";
         } 

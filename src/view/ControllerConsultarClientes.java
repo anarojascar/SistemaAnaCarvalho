@@ -40,7 +40,7 @@ public class ControllerConsultarClientes extends AbstractTableModel {
         } else if (columnIndex ==2) {
             return aacClientes.getAacEmail();
         }else if (columnIndex ==3) {
-            return aacClientes.getAacCidade();
+            return aacClientes.getAacLimiteCredito();
         }
         return ""; 
     }
@@ -53,7 +53,7 @@ public class ControllerConsultarClientes extends AbstractTableModel {
         } else if ( columnIndex == 2) {
             return "Email";
         }else if ( columnIndex == 3) {
-            return "Cidade";
+            return "Limite Credito(R$)";
         } 
         return "";
     }

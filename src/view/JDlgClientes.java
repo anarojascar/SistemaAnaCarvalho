@@ -54,7 +54,7 @@ public class JDlgClientes extends javax.swing.JDialog {
         jTxtPrefComunicacao.setText(aacClientes.getAacPreferenciaComunicacao());
         jTxtLogradouro.setText(aacClientes.getAacLogradouro());
         jTxtNEndereco.setText(Util.intoStr(aacClientes.getAacNumeroEndereco()));
-        jTxtLimiteC.setText(Util.bigDecimalToStr(aacClientes.getAacLimiteCredito()));
+        jTxtLimiteC.setText(Util.doubleToStr(aacClientes.getAacLimiteCredito()));
         jFmtCpf.setText(aacClientes.getAacCpf());
         jFmtCep.setText(aacClientes.getAacCep());
         jFmtEstado.setText(aacClientes.getAacEstado());
@@ -73,7 +73,7 @@ public class JDlgClientes extends javax.swing.JDialog {
      aacClientes.setAacPreferenciaComunicacao(jTxtPrefComunicacao.getText());   
      aacClientes.setAacLogradouro(jTxtLogradouro.getText());   
      aacClientes.setAacNumeroEndereco(Util.strToInt(jTxtNEndereco.getText()));   
-     aacClientes.setAacLimiteCredito(Util.strToBigDecimal(jTxtLimiteC.getText()));   
+     aacClientes.setAacLimiteCredito(Util.strToDouble(jTxtLimiteC.getText()));   
      aacClientes.setAacCpf(jFmtCpf.getText());   
      aacClientes.setAacCep(jFmtCep.getText());   
      aacClientes.setAacEstado(jFmtEstado.getText());   

@@ -6,16 +6,23 @@
 package view;
 
 import dao.VendasDAO;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 /**
  *
  * @author anale
  */
+
 public class JDlgConsultarVendas extends javax.swing.JDialog {
 ControllerConsultarVendas controllerConsultarVendas;
+
     /**
      * Creates new form JDlgConsultarVendas
      */
@@ -28,6 +35,7 @@ ControllerConsultarVendas controllerConsultarVendas;
         List lista = new ArrayList();
         controllerConsultarVendas.setList(lista);
         jTable1.setModel(controllerConsultarVendas);
+       
     }
 
     /**
@@ -39,18 +47,19 @@ ControllerConsultarVendas controllerConsultarVendas;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTxtFuncionario = new javax.swing.JTextField();
+        jTxtValorTotal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnConsulta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTxtCliente = new javax.swing.JTextField();
+        jFmtDataVenda = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel2.setText("Funcionario ");
+        jLabel2.setText("Valor Total maior que");
 
         jBtnConsulta.setText("Consultar");
         jBtnConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -84,31 +93,36 @@ ControllerConsultarVendas controllerConsultarVendas;
             }
         });
 
-        jLabel1.setText("Cliente");
+        jLabel1.setText("Data Venda maior ou igual a");
+
+        jLabel3.setText("(dd/mm/YYYY)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnOk))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jTxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFmtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(88, 88, 88)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTxtFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTxtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBtnConsulta)))))
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,16 +132,18 @@ ControllerConsultarVendas controllerConsultarVendas;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFmtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTxtFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBtnConsulta))))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtnOk)
                 .addContainerGap())
         );
@@ -139,13 +155,13 @@ ControllerConsultarVendas controllerConsultarVendas;
         // TODO add your handling code here:
         VendasDAO vendasDAO = new VendasDAO();
         List lista;
-        if((jTxtCliente.getText().isEmpty() ==false)
-            &&(jTxtFuncionario.getText().isEmpty() == false)){
-            lista = (List) vendasDAO.listClientesFuncionarios ((jTxtCliente.getText()), jTxtFuncionario.getText());
-        }else if (jTxtCliente.getText().isEmpty() == false){
-            lista = (List) vendasDAO.listCliente((jTxtCliente.getText()));
-        }else if (jTxtFuncionario.getText().isEmpty() == false){
-            lista = (List) vendasDAO.listFuncionario((jTxtFuncionario.getText()));
+        if((jFmtDataVenda.getText().isEmpty() ==false)
+            &&(jTxtValorTotal.getText().isEmpty() == false)){
+            lista = (List) vendasDAO.listDataValor(Util.strToDate(jFmtDataVenda.getText()), Util.strToDouble(jTxtValorTotal.getText()));
+        }else if (jFmtDataVenda.getText().isEmpty() == false){
+            lista = (List) vendasDAO.listDataVenda(Util.strToDate(jFmtDataVenda.getText()));
+        }else if (jTxtValorTotal.getText().isEmpty() == false){
+            lista = (List) vendasDAO.listValorTotal(Util.strToDouble(jTxtValorTotal.getText()));
         } else{
             lista = (List) vendasDAO.listAll();
         }
@@ -208,11 +224,12 @@ ControllerConsultarVendas controllerConsultarVendas;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsulta;
     private javax.swing.JButton jBtnOk;
+    private javax.swing.JFormattedTextField jFmtDataVenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtCliente;
-    private javax.swing.JTextField jTxtFuncionario;
+    private javax.swing.JTextField jTxtValorTotal;
     // End of variables declaration//GEN-END:variables
 }

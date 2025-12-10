@@ -25,7 +25,7 @@ public class AacClientes  implements java.io.Serializable {
 
 
      private int aacIdCliente;
-     private BigDecimal aacLimiteCredito;
+     private Double aacLimiteCredito;
      private String aacLogradouro;
      private int aacNumeroEndereco;
      private String aacComplemento;
@@ -48,7 +48,7 @@ public class AacClientes  implements java.io.Serializable {
     public AacClientes(int aacIdCliente) {
         this.aacIdCliente = aacIdCliente;
     }
-    public AacClientes(int aacIdCliente, BigDecimal aacLimiteCredito, String aacLogradouro, int aacNumeroEndereco, String aacComplemento, String aacBairro, String aacCidade, String aacEstado, String aacCep, String aacPreferenciaComunicacao, String aacTelefone, String aacEmail, String aacUltimoPedido, String aacNome, String aacCpf) {
+    public AacClientes(int aacIdCliente, Double aacLimiteCredito, String aacLogradouro, int aacNumeroEndereco, String aacComplemento, String aacBairro, String aacCidade, String aacEstado, String aacCep, String aacPreferenciaComunicacao, String aacTelefone, String aacEmail, String aacUltimoPedido, String aacNome, String aacCpf) {
        this.aacIdCliente = aacIdCliente;
        this.aacLimiteCredito = aacLimiteCredito;
        this.aacLogradouro = aacLogradouro;
@@ -79,11 +79,11 @@ public class AacClientes  implements java.io.Serializable {
 
     
     @Column(name="aac_limite_credito")
-    public BigDecimal getAacLimiteCredito() {
+    public Double getAacLimiteCredito() {
         return this.aacLimiteCredito;
     }
     
-    public void setAacLimiteCredito(BigDecimal aacLimiteCredito) {
+    public void setAacLimiteCredito(Double aacLimiteCredito) {
         this.aacLimiteCredito = aacLimiteCredito;
     }
 

@@ -50,6 +50,12 @@ public class JDlgConsultarProdutos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jTxtValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtValorActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Valor Maior que ");
 
         jBtnConsulta.setText("Consultar");
@@ -163,6 +169,10 @@ public class JDlgConsultarProdutos extends javax.swing.JDialog {
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jTxtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtValorActionPerformed
 
     /**
      * @param args the command line arguments

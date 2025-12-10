@@ -40,7 +40,7 @@ ControllerConsultarClientes controllerConsultarClientes;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTxtCidade = new javax.swing.JTextField();
+        jTxtLimiteCredito = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnConsulta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -53,7 +53,7 @@ ControllerConsultarClientes controllerConsultarClientes;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel2.setText("Cidade ");
+        jLabel2.setText("Limite Credito (R$)");
 
         jBtnConsulta.setText("Consultar");
         jBtnConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +102,7 @@ ControllerConsultarClientes controllerConsultarClientes;
                     .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtLimiteCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +135,7 @@ ControllerConsultarClientes controllerConsultarClientes;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtLimiteCredito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnConsulta))
                 .addGap(18, 18, 18)
@@ -153,13 +153,13 @@ ControllerConsultarClientes controllerConsultarClientes;
         ClientesDAO clientesDAO = new ClientesDAO();
         List lista;
         if((jTxtNome.getText().isEmpty() ==false)
-            &&(jTxtCidade.getText().isEmpty() == false)
+            &&(jTxtLimiteCredito.getText().isEmpty() == false)
                 &&(jTxtEmail.getText().isEmpty() == false)){
-            lista = (List) clientesDAO.listNomeCidadeEmail(jTxtNome.getText(), jTxtCidade.getText(), jTxtEmail.getText());
+            lista = (List) clientesDAO.listNomeLimiteEmail(jTxtNome.getText(), (Util.strToDouble(jTxtLimiteCredito.getText())), jTxtEmail.getText());
         }else if (jTxtNome.getText().isEmpty() == false){
             lista = (List) clientesDAO.listNome(jTxtNome.getText());
-        }else if (jTxtCidade.getText().isEmpty() == false){
-            lista = (List) clientesDAO.listCidade(jTxtCidade.getText());
+        }else if (jTxtLimiteCredito.getText().isEmpty() == false){
+            lista = (List) clientesDAO.listLimite(Util.strToDouble(jTxtLimiteCredito.getText()));
         }else if (jTxtEmail.getText().isEmpty() == false){
             lista = (List) clientesDAO.listEmail(jTxtEmail.getText());
         } else{
@@ -229,8 +229,8 @@ ControllerConsultarClientes controllerConsultarClientes;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtCidade;
     private javax.swing.JTextField jTxtEmail;
+    private javax.swing.JTextField jTxtLimiteCredito;
     private javax.swing.JTextField jTxtNome;
     // End of variables declaration//GEN-END:variables
 }

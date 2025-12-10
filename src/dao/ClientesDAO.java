@@ -53,10 +53,10 @@ public class ClientesDAO extends AbstractDAO{
         session.getTransaction().commit();        
         return lista;
     }
-     public Object listCidade (String aacCidade) {
+      public Object listLimite(double aacLimiteCredito) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacClientes.class);
-        criteria.add(Restrictions.like("aacCidade", "%"+aacCidade+"%"));
+        criteria.add(Restrictions.ge("aacLimiteCredito", aacLimiteCredito));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
@@ -69,11 +69,11 @@ public class ClientesDAO extends AbstractDAO{
         session.getTransaction().commit();        
         return lista;
     }
-     public Object listNomeCidadeEmail(String aacNome, String aacCidade, String aacEmail) {
+     public Object listNomeLimiteEmail(String aacNome, Double aacLimiteCredito, String aacEmail) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacClientes.class);
         criteria.add(Restrictions.like("aacNome", "%"+aacNome+"%"));
-        criteria.add(Restrictions.like("aacCidade", "%"+aacCidade+"%"));
+        criteria.add(Restrictions.ge("aacLimiteCredito", aacLimiteCredito));
          criteria.add(Restrictions.like("aacEmail", "%"+aacEmail+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
