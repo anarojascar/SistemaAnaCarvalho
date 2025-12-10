@@ -5,6 +5,8 @@
  */
 package dao;
 
+import bean.AacClientes;
+import bean.AacFuncionarios;
 import bean.AacVendas;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -49,7 +51,35 @@ public class VendasDAO extends AbstractDAO{
        session.getTransaction().commit();
        return lista;
     }
-
+    
+     public Object listCliente(AacClientes aacClientes) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(AacVendas.class);
+        criteria.add(Restrictions.like("aacClientes", "%"+aacClientes+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    } 
+     
+     public Object listFuncionario(AacFuncionarios aacFuncionarios) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(AacVendas.class);
+        criteria.add(Restrictions.like("aacFuncionarios", "%"+aacFuncionarios+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    } 
+    
+     public Object listClientesFuncionarios(AacClientes aacClientes, AacFuncionarios aacFuncionarios) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(AacVendas.class);
+        criteria.add(Restrictions.like("aacClientes", "%"+aacClientes+"%"));
+        criteria.add(Restrictions.like("aacFuncionarios", "%"+aacFuncionarios+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+  }
+     
     @Override
     public Object listAll() {
        session.beginTransaction();

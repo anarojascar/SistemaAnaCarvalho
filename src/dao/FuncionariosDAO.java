@@ -50,27 +50,27 @@ public class FuncionariosDAO extends AbstractDAO{
        session.getTransaction().commit();
        return lista;
     }
-    public Object listNome(String nome) {
+    public Object listNome(String aacNome) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacFuncionarios.class);
-        criteria.add(Restrictions.like("nome", "%"+nome+"%"));
+        criteria.add(Restrictions.like("aacNome", "%"+aacNome+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
     } 
-     public Object listContrato(String contrato) {
+     public Object listContrato(String aacTipoContratacao) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacFuncionarios.class);
-        criteria.add(Restrictions.like("contrato", contrato+"%"));
+        criteria.add(Restrictions.like("aacTipoContratacao", aacTipoContratacao+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
     } 
-      public Object listNomeContrato(String nome, String contrato) {
+      public Object listNomeContrato(String aacNome, String aacTipoContratacao) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacFuncionarios.class);
-        criteria.add(Restrictions.like("nome", "%"+nome+"%"));
-        criteria.add(Restrictions.like("contrato", contrato+"%"));
+        criteria.add(Restrictions.like("aacNome", "%"+aacNome+"%"));
+        criteria.add(Restrictions.like("aacTipoContratacao", aacTipoContratacao+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;

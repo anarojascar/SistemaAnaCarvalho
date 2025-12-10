@@ -52,28 +52,28 @@ public class ProdutosDAO extends AbstractDAO {
     }
 
     
-    public Object listNome(String nome) {
+    public Object listMarca(String aacMarca) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacProdutos.class);
-        criteria.add(Restrictions.like("nome", "%"+nome+"%"));
+        criteria.add(Restrictions.like("aacMarca", "%"+aacMarca+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
     } 
     
-    public Object listValor(double valor) {
+    public Object listValor(double aacPreco) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacProdutos.class);
-        criteria.add(Restrictions.ge("ValorUnitario", valor));
+        criteria.add(Restrictions.ge("aacPreco", aacPreco));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
     }
-  public Object listNomeValor(String nome, double valor) {
+  public Object listMarcaValor(String aacMarca, double aacPreco) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacProdutos.class);
-        criteria.add(Restrictions.like("nome", "%"+nome+"%"));
-        criteria.add(Restrictions.ge("valorUnitario", valor));
+        criteria.add(Restrictions.like("aacMarca", "%"+aacMarca+"%"));
+        criteria.add(Restrictions.ge("aacPreco", aacPreco));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;

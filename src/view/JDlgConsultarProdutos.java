@@ -25,7 +25,6 @@ public class JDlgConsultarProdutos extends javax.swing.JDialog {
         setTitle("Consultar Produtos");
          setLocationRelativeTo(null);
         controllerConsultarProdutos = new ControllerConsultarProdutos();
-        ProdutosDAO produtosDAO = new ProdutosDAO();
         List lista = new ArrayList();
         controllerConsultarProdutos.setList(lista);
         jTable1.setModel(controllerConsultarProdutos);
@@ -85,7 +84,7 @@ public class JDlgConsultarProdutos extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Nome");
+        jLabel1.setText("Marca");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,12 +141,12 @@ public class JDlgConsultarProdutos extends javax.swing.JDialog {
         List lista;
         if((jTxtNome.getText().isEmpty() ==false)
             &&(jTxtValor.getText().isEmpty() == false)){
-            lista = (List) produtosDAO.listNomeValor(jTxtNome.getText(),
+            lista = (List) produtosDAO.listMarcaValor(jTxtNome.getText(),
                 Util.strToDouble(jTxtValor.getText()));
         }else if (jTxtNome.getText().isEmpty() == false){
-            lista = (List) produtosDAO.listNome(jTxtNome.getText());
+            lista = (List) produtosDAO.listMarca(jTxtNome.getText());
         }else if (jTxtValor.getText().isEmpty() == false){
-            lista = (List) produtosDAO.listValor(Util.strToDouble(jTxtNome.getText()));
+            lista = (List) produtosDAO.listValor(Util.strToDouble(jTxtValor.getText()));
         } else{
             lista = (List) produtosDAO.listAll();
         }

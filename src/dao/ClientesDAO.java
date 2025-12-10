@@ -45,36 +45,36 @@ public class ClientesDAO extends AbstractDAO{
        session.getTransaction().commit();
        return lista;
     }
-    public Object listNome(String nome) {
+    public Object listNome(String aacNome) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacClientes.class);
-        criteria.add(Restrictions.like("nome", "%"+nome+"%"));
+        criteria.add(Restrictions.like("aacNome", "%"+aacNome+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
     }
-     public Object listCidade (String cidade) {
+     public Object listCidade (String aacCidade) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacClientes.class);
-        criteria.add(Restrictions.like("cidade", "%"+cidade+"%"));
+        criteria.add(Restrictions.like("aacCidade", "%"+aacCidade+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
     }
-     public Object listEmail (String email) {
+     public Object listEmail (String aacEmail) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacClientes.class);
-        criteria.add(Restrictions.like("cidade", "%"+email+"%"));
+        criteria.add(Restrictions.like("aacEmail", "%"+aacEmail+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
     }
-     public Object listNomeCidadeEmail(String nome, String cidade, String email) {
+     public Object listNomeCidadeEmail(String aacNome, String aacCidade, String aacEmail) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(AacClientes.class);
-        criteria.add(Restrictions.like("nome", "%"+nome+"%"));
-        criteria.add(Restrictions.like("cidade", "%"+cidade+"%"));
-         criteria.add(Restrictions.like("cidade", "%"+email+"%"));
+        criteria.add(Restrictions.like("aacNome", "%"+aacNome+"%"));
+        criteria.add(Restrictions.like("aacCidade", "%"+aacCidade+"%"));
+         criteria.add(Restrictions.like("aacEmail", "%"+aacEmail+"%"));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;

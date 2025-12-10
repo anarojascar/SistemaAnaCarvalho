@@ -26,7 +26,6 @@ ControllerConsultarClientes controllerConsultarClientes;
         setTitle("Consultar Clientes");
         setLocationRelativeTo(null);
         controllerConsultarClientes = new ControllerConsultarClientes();
-        ClientesDAO clientesDAO = new ClientesDAO();
         List lista = new ArrayList();
         controllerConsultarClientes.setList(lista);
         jTable1.setModel(controllerConsultarClientes);
